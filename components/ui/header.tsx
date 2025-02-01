@@ -2,23 +2,58 @@
 
 import Link from "next/link";
 import Logo from "./logo";
+import { useState } from "react";
 
 export default function Header() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <header className="z-30 mt-2 w-full md:mt-5">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="relative flex h-14 items-center justify-between gap-3 rounded-2xl bg-gray-900/90 px-3 before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-transparent before:[background:linear-gradient(to_right,theme(colors.gray.800),theme(colors.gray.700),theme(colors.gray.800))_border-box] before:[mask-composite:exclude_!important] before:[mask:linear-gradient(white_0_0)_padding-box,_linear-gradient(white_0_0)] after:absolute after:inset-0 after:-z-10 after:backdrop-blur-sm">
-          {/* Site branding */}
-          <div className="flex flex-1 items-center">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="relative flex h-14 items-center justify-between rounded-2xl bg-gray-900/90 px-3 before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-transparent before:[background:linear-gradient(to_right,theme(colors.gray.800),theme(colors.gray.700),theme(colors.gray.800))_border-box] before:[mask-composite:exclude_!important] before:[mask:linear-gradient(white_0_0)_padding-box,_linear-gradient(white_0_0)] after:absolute after:inset-0 after:-z-10 after:backdrop-blur-sm">
+          {/* Logo */}
+          <div className="flex items-center">
             <Logo />
           </div>
 
-          {/* Desktop sign in links */}
-          <ul className="flex flex-1 items-center justify-end gap-3">
+          {/* Desktop Navigation Links */}
+          <nav className="hidden md:flex md:flex-1 md:justify-center">
+            <ul className="flex items-center gap-12 text-gray-300">
+              <li>
+                <Link href="/" className="text-[1.02rem] hover:text-white transition">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link href="/about-us" className="text-[1.02rem] hover:text-white transition">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className="text-[1.02rem] hover:text-white transition">
+                  Blog
+                </Link>
+              </li>
+             
+              <li>
+                <Link href="/resources" className="text-[1.02rem] hover:text-white transition">
+                  Resources
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact-us" className="text-[1.02rem] hover:text-white transition">
+                  Contact Us
+                </Link>
+              </li>
+            </ul>
+          </nav>
+
+          {/* Sign In and Register */}
+          <ul className="flex items-center gap-3">
             <li>
               <Link
                 href="/signin"
-                className="btn-sm relative bg-gradient-to-b from-gray-800 to-gray-800/60 bg-[length:100%_100%] bg-[bottom] py-[5px] text-gray-300 before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-transparent before:[background:linear-gradient(to_right,theme(colors.gray.800),theme(colors.gray.700),theme(colors.gray.800))_border-box] before:[mask-composite:exclude_!important] before:[mask:linear-gradient(white_0_0)_padding-box,_linear-gradient(white_0_0)] hover:bg-[length:100%_150%]"
+                className="btn-sm bg-gray-800 py-2 px-4 text-gray-300 hover:bg-gray-700"
               >
                 Sign In
               </Link>
@@ -26,13 +61,68 @@ export default function Header() {
             <li>
               <Link
                 href="/signup"
-                className="btn-sm bg-gradient-to-t from-indigo-600 to-indigo-500 bg-[length:100%_100%] bg-[bottom] py-[5px] text-white shadow-[inset_0px_1px_0px_0px_theme(colors.white/.16)] hover:bg-[length:100%_150%]"
+                className="btn-sm bg-indigo-600 py-2 px-4 text-white hover:bg-indigo-500"
               >
                 Register
               </Link>
             </li>
+            <li className="md:hidden">
+              {/* Hamburger Menu */}
+              <button
+                className="text-gray-300 focus:outline-none"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              >
+                <svg
+                  className="h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16m-7 6h7"
+                  />
+                </svg>
+              </button>
+            </li>
           </ul>
         </div>
+
+        {/* Mobile Navigation */}
+        {mobileMenuOpen && (
+          <div className="absolute left-0 top-14 w-full rounded-lg bg-gray-900/80 backdrop-blur-md p-4 shadow-lg md:hidden">
+            <ul className="flex flex-col gap-4 text-gray-300">
+              <li>
+                <Link href="/pricing" className="hover:text-white transition">
+                  Pricing
+                </Link>
+              </li>
+              <li>
+                <Link href="/about-us" className="hover:text-white transition">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className="hover:text-white transition">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link href="/help-centre" className="hover:text-white transition">
+                  Help Centre
+                </Link>
+              </li>
+              <li>
+                <Link href="/resources" className="hover:text-white transition">
+                  Resources
+                </Link>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </header>
   );
