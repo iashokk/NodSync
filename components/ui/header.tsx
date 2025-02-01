@@ -25,17 +25,17 @@ export default function Header() {
                 </Link>
               </li>
               <li>
-                <Link href="/about-us" className="text-[1.02rem] hover:text-white transition">
+                <Link href="/AboutUs" className="text-[1.02rem] hover:text-white transition">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="text-[1.02rem] hover:text-white transition">
+                <Link href="/Blog" className="text-[1.02rem] hover:text-white transition">
                   Blog
                 </Link>
               </li>
               <li>
-                <Link href="/contact-us" className="text-[1.02rem] hover:text-white transition">
+                <Link href="/ContactUs" className="text-[1.02rem] hover:text-white transition">
                   Contact Us
                 </Link>
               </li>
