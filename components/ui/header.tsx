@@ -9,7 +9,7 @@ export default function Header() {
 
   return (
     <header className="z-30 mt-2 w-full md:mt-5">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6">
         <div className="relative flex h-14 items-center justify-between rounded-2xl bg-gray-900/90 px-3 before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-transparent before:[background:linear-gradient(to_right,theme(colors.gray.800),theme(colors.gray.700),theme(colors.gray.800))_border-box] before:[mask-composite:exclude_!important] before:[mask:linear-gradient(white_0_0)_padding-box,_linear-gradient(white_0_0)] after:absolute after:inset-0 after:-z-10 after:backdrop-blur-sm">
           {/* Logo */}
           <div className="flex items-center">
@@ -18,7 +18,7 @@ export default function Header() {
 
           {/* Desktop Navigation Links */}
           <nav className="hidden md:flex md:flex-1 md:justify-center">
-            <ul className="flex items-center gap-12 text-gray-300">
+            <ul className="flex items-center gap-16 text-gray-300">
               <li>
                 <Link href="/" className="text-[1.02rem] hover:text-white transition">
                   Home
@@ -32,12 +32,6 @@ export default function Header() {
               <li>
                 <Link href="/blog" className="text-[1.02rem] hover:text-white transition">
                   Blog
-                </Link>
-              </li>
-             
-              <li>
-                <Link href="/resources" className="text-[1.02rem] hover:text-white transition">
-                  Resources
                 </Link>
               </li>
               <li>
