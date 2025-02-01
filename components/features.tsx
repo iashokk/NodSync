@@ -36,16 +36,14 @@ export default function Features() {
           <div className="mx-auto max-w-3xl pb-4 text-center md:pb-12">
             <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-gradient-to-r before:from-transparent before:to-indigo-200/50 after:h-px after:w-8 after:bg-gradient-to-l after:from-transparent after:to-indigo-200/50">
               <span className="inline-flex bg-gradient-to-r from-indigo-500 to-indigo-200 bg-clip-text text-transparent">
-                Advanced Controls
+              A Journey We’ll Take Together
               </span>
             </div>
             <h2 className="animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,theme(colors.gray.200),theme(colors.indigo.200),theme(colors.gray.50),theme(colors.indigo.300),theme(colors.gray.200))] bg-[length:200%_auto] bg-clip-text pb-4 font-nacelle text-3xl font-semibold text-transparent md:text-4xl">
-              Built for modern product teams
+            We Guide, You Learn
             </h2>
             <p className="text-lg text-indigo-200/65">
-              Open AI reads and understands your files, and with nothing more
-              than a single line of feedback, so you can go further than the
-              speed of thought.
+            We don't just help you complete your projects; we mentor you through the entire process. Our goal is to empower you with the knowledge, skills, and confidence needed to excel in your academic and professional journey. Learn, grow, and succeed with us.
             </p>
           </div>
           <div className="flex justify-center pb-4 md:pb-12" data-aos="fade-up">
@@ -73,11 +71,12 @@ export default function Features() {
                 />
               </svg>
               <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
-                Project Milestones
+              Win a Competition and Participate More
               </h3>
               <p className="text-indigo-200/65">
-                Track progress across custom flows for your team. Find the right
-                balance for the user, privacy and security.
+               Discover strategies to win competitions, from preparation to effective presentation, 
+               and learn how to find and excel in relevant competitions and continuously 
+               improve your skills to stay competitive
               </p>
             </article>
             <article>
@@ -91,11 +90,11 @@ export default function Features() {
                 <path d="M19 6H0v2h17v8H7v-6H5v8h19v-2h-5V6Z" />
               </svg>
               <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
-                Team Views
+              Plan of Action on How to Get Your Dream Job
               </h3>
               <p className="text-indigo-200/65">
-                Track progress across custom flows for your team. Find the right
-                balance for the user, privacy and security.
+              Strategic plan to assess your strengths, build a standout resume, network, 
+              and prepare for interviews to land your dream job.
               </p>
             </article>
             <article>
@@ -112,11 +111,12 @@ export default function Features() {
                 />
               </svg>
               <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
-                Advanced Search
+              Step-by-Step Guidance on How to Complete your Project with Ease
               </h3>
               <p className="text-indigo-200/65">
-                Track progress across custom flows for your team. Find the right
-                balance for the user, privacy and security.
+              Navigate your project idea effortlessly 
+              with our comprehensive support, from topic selection to final presentation.
+
               </p>
             </article>
             <article>
@@ -138,11 +138,11 @@ export default function Features() {
                 <path d="m16.321 2-.5-.866 1.733-1 .5.866A22 22 0 0 1 21 12c0 3.852-1.017 7.636-2.948 10.97l-.502.865-1.73-1.003.501-.865A19.878 19.878 0 0 0 19 12a20 20 0 0 0-2.679-10Z" />
               </svg>
               <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
-                Strategic Initiatives
+              One-on-One Guidance
               </h3>
               <p className="text-indigo-200/65">
-                Track progress across custom flows for your team. Find the right
-                balance for the user, privacy and security.
+              Get personalized advice and mentorship directly from us. 
+              Whether you're solving coding problems, preparing for placements. We are here to help you every step of the way.
               </p>
             </article>
             <article>
@@ -159,32 +159,11 @@ export default function Features() {
                 <path d="m7.454 2.891.891-.454L7.437.655l-.891.454a12 12 0 0 0 0 21.382l.89.454.91-1.781-.892-.455a10 10 0 0 1 0-17.818ZM17.456 1.11l-.891-.454-.909 1.782.891.454a10 10 0 0 1 0 17.819l-.89.454.908 1.781.89-.454a12 12 0 0 0 0-21.382Z" />
               </svg>
               <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
-                Flexible Workflows
+              Mastery Roadmap
               </h3>
               <p className="text-indigo-200/65">
-                Track progress across custom flows for your team. Find the right
-                balance for the user, privacy and security.
-              </p>
-            </article>
-            <article>
-              <svg
-                className="mb-3 fill-indigo-500"
-                xmlns="http://www.w3.org/2000/svg"
-                width={24}
-                height={24}
-              >
-                <path
-                  fillOpacity=".48"
-                  d="M19 8h5v2h-5V8Zm-4 5h9v2h-9v-2Zm9 5H11v2h13v-2Z"
-                />
-                <path d="M19.406 3.844 6.083 20.497.586 15 2 13.586l3.917 3.917L17.844 2.595l1.562 1.25Z" />
-              </svg>
-              <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
-                Unified Timeline
-              </h3>
-              <p className="text-indigo-200/65">
-                Track progress across custom flows for your team. Find the right
-                balance for the user, privacy and security.
+              Get a step-by-step roadmap for studying a programming language or concept. 
+              We provide structured guidance to help you master new skills efficiently and effectively.
               </p>
             </article>
           </div>
