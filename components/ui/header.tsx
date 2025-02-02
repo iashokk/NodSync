@@ -90,28 +90,23 @@ export default function Header() {
           <div className="absolute left-0 top-14 w-full rounded-lg bg-gray-900/80 backdrop-blur-md p-4 shadow-lg md:hidden">
             <ul className="flex flex-col gap-4 text-gray-300">
               <li>
-                <Link href="/pricing" className="hover:text-white transition">
-                  Pricing
+                <Link href="/" className="hover:text-white transition">
+                Home
                 </Link>
               </li>
               <li>
-                <Link href="/about-us" className="hover:text-white transition">
+                <Link href="/AboutUs" className="hover:text-white transition">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="hover:text-white transition">
+                <Link href="/Blog" className="hover:text-white transition">
                   Blog
                 </Link>
               </li>
               <li>
-                <Link href="/help-centre" className="hover:text-white transition">
-                  Help Centre
-                </Link>
-              </li>
-              <li>
-                <Link href="/resources" className="hover:text-white transition">
-                  Resources
+                <Link href="/ContactUs" className="hover:text-white transition">
+                  Contact Us
                 </Link>
               </li>
             </ul>
