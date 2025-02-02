@@ -67,7 +67,7 @@ export default function AboutUs() {
                 {
                   year: "2020",
                   title: "The Beginning",
-                  desc: "In 2020, I entered the world of projects with no prior knowledge. I didn’t even know how to create a PPT or a document. With my friends’ support, I participated in competitions, faced repeated failures, and learned from my mistakes. Each rejection became a stepping stone.",
+                  desc: "In 2020, I entered the world of projects with no prior knowledge. I didn’t even know how to create a PPT or a document. But together with my team, We participated in competitions, faced repeated failures, and learned from our mistakes. Each rejection became a stepping stone.",
                 },
                 {
                   year: "2021",
@@ -77,22 +77,22 @@ export default function AboutUs() {
                 {
                   year: "2021",
                   title: "The Seed",
-                  desc: "We, a team of three friends, had the initial spark of an idea—NodSync. With nothing more than passion and curiosity, we created a simple website to start helping others and working on small projects.",
+                  desc: "It was in 2021 that the idea for NodSync took root. With a small but passionate team, we launched a simple website aimed at helping others with their projects. What began as a small initiative was fueled by our curiosity and commitment to make a difference.",
                 },
                 {
                   year: "2022",
                   title: "The Turning Point",
-                  desc: "2022 was a game-changer. We participated in two major competitions simultaneously, pushing our limits. Our hard work paid off as we won both competitions, marking the beginning of something extraordinary.",
+                  desc: "2022 was a game-changer. We participated in two major competitions simultaneously, pushing our limits. Our hard work paid off as we won both competitions, marking the beginning of something extraordinary. That year, I began mentoring juniors and assisting others with their projects, expanding my reach and impact.",
                 },
                 {
                   year: "2023 - 2024",
                   title: "Building Momentum",
-                  desc: "Through word of mouth, I began interacting with more people—helping with their projects, guiding them in competitions, teaching coding languages, and so much more.",
+                  desc: "Through word of mouth, I began interacting with more people—helping with their projects, guiding them in competitions, teaching coding languages, and so much more. Over time, I realized that my passion was not just in winning—but in empowering others to succeed. This inspired me to revisit and expand NodSync, turning it into a platform for anyone who needs guidance.",
                 },
                 {
                   year: "2025",
                   title: "Launching NodSync",
-                  desc: "After mentoring over 20 projects and sharing knowledge with juniors, I realized the potential of creating something bigger. That’s when NodSync was born — a platform to guide students and professionals in projects, academics, and placements.",
+                  desc: "After mentoring over 20 projects, I spent a lot of time doubting if I could turn my passion into something bigger. With reflection and growing confidence, That’s when NodSync was born—a platform to guide students and friends in projects, academics, and placements, and to help them achieve their goals with confidence.",
                 },
               ].map((event, index) => (
                 <div key={index} className="mb-10">
