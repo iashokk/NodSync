@@ -7,6 +7,10 @@ import { useState } from "react";
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Function to close the mobile menu
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
+  };
   return (
     <header className="z-30 mt-2 w-full md:mt-5">
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
@@ -90,22 +94,22 @@ export default function Header() {
           <div className="absolute left-0 top-14 w-full rounded-lg bg-gray-900/80 backdrop-blur-md p-4 shadow-lg md:hidden">
             <ul className="flex flex-col gap-4 text-gray-300">
               <li>
-                <Link href="/" className="hover:text-white transition">
+                <Link href="/" className="hover:text-white transition" onClick={closeMobileMenu}>
                 Home
                 </Link>
               </li>
               <li>
-                <Link href="/AboutUs" className="hover:text-white transition">
+                <Link href="/AboutUs" className="hover:text-white transition" onClick={closeMobileMenu}>
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/Blog" className="hover:text-white transition">
+                <Link href="/Blog" className="hover:text-white transition" onClick={closeMobileMenu}>
                   Blog
                 </Link>
               </li>
               <li>
-                <Link href="/ContactUs" className="hover:text-white transition">
+                <Link href="/ContactUs" className="hover:text-white transition" onClick={closeMobileMenu}>
                   Contact Us
                 </Link>
               </li>
