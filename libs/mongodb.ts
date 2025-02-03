@@ -1,7 +1,7 @@
 // lib/mongodb.ts
 import mongoose from 'mongoose';
 
-const MONGODB_URI = 'mongodb+srv://ashokkumaravel02:AgFw1ABv1oiWkOl2@nodsync.pg3na.mongodb.net/?retryWrites=true&w=majority&appName=NodSync';
+const MONGODB_URI = process.env.MONGODB_URI!;
 
 if (!MONGODB_URI) {
   throw new Error('MongoDB URI is not defined');
