@@ -2,15 +2,30 @@
 
 import Link from "next/link";
 import Logo from "./logo";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   // Function to close the mobile menu
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
   };
+
+   // Check the login state on initial render
+   useEffect(() => {
+    // Check if the user is logged in when the component mounts
+    const user = localStorage.getItem("user");
+    if (user) {
+      setIsLoggedIn(true);
+    }
+  }, []); // Empty dependency array means this effect runs once on component mount
+  // Handle Logout
+  const handleLogout = () => {
+    localStorage.removeItem("user"); // Remove user data from localStorage
+    setIsLoggedIn(false); // Update the login status
+  };
+
   return (
     <header className="z-30 mt-2 w-full md:mt-5">
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
@@ -46,24 +61,37 @@ export default function Header() {
             </ul>
           </nav>
 
-          {/* Sign In and Register */}
+          {/* Sign In, Register or Logout based on login status */}
           <ul className="flex items-center gap-3">
-            <li>
-              <Link
-                href="/signin"
-                className="btn-sm bg-gray-800 py-2 px-4 text-gray-300 hover:bg-gray-700"
-              >
-                Sign In
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/signup"
-                className="btn-sm bg-indigo-600 py-2 px-4 text-white hover:bg-indigo-500"
-              >
-                Register
-              </Link>
-            </li>
+            {isLoggedIn ? (
+              <li>
+                <button
+                  onClick={handleLogout}
+                  className="btn-sm bg-gray-800 py-2 px-4 text-gray-300 hover:bg-gray-700"
+                >
+                  Logout
+                </button>
+              </li>
+            ) : (
+              <>
+                <li>
+                  <Link
+                    href="/signin"
+                    className="btn-sm bg-gray-800 py-2 px-4 text-gray-300 hover:bg-gray-700"
+                  >
+                    Sign In
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/signup"
+                    className="btn-sm bg-indigo-600 py-2 px-4 text-white hover:bg-indigo-500"
+                  >
+                    Register
+                  </Link>
+                </li>
+              </>
+            )}
             <li className="md:hidden">
               {/* Hamburger Menu */}
               <button
@@ -95,7 +123,7 @@ export default function Header() {
             <ul className="flex flex-col gap-4 text-gray-300">
               <li>
                 <Link href="/" className="hover:text-white transition" onClick={closeMobileMenu}>
-                Home
+                  Home
                 </Link>
               </li>
               <li>

@@ -39,13 +39,14 @@ export default function SignUp() {
                   className="mb-1 block text-sm font-medium text-indigo-200/65"
                   htmlFor="name"
                 >
-                  Company Name <span className="text-red-500">*</span>
+                  College Name <span className="text-red-500">*</span>
                 </label>
                 <input
-                  id="company"
+                  id="college"
+                  name="college"
                   type="text"
                   className="form-input w-full"
-                  placeholder="Your company name"
+                  placeholder="Your college name"
                   required
                 />
               </div>
@@ -54,13 +55,13 @@ export default function SignUp() {
                   className="mb-1 block text-sm font-medium text-indigo-200/65"
                   htmlFor="email"
                 >
-                  Work Email <span className="text-red-500">*</span>
+                  Email <span className="text-red-500">*</span>
                 </label>
                 <input
                   id="email"
                   type="email"
                   className="form-input w-full"
-                  placeholder="Your work email"
+                  placeholder="Your email"
                 />
               </div>
               <div>
