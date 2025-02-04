@@ -3,7 +3,29 @@ import BlurredShape from "@/public/images/blurred-shape.svg";
 
 export default function Cta() {
   return (
-    <section className="relative overflow-hidden">
+
+    <>
+     <section className=" bg-gradient-to-r from-transparent via-gray-800/50 py-12 md:py-20">
+      <div className="max-w-4xl mx-auto px-6 text-center">
+      <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-gradient-to-r before:from-transparent before:to-indigo-200/50 after:h-px after:w-8 after:bg-gradient-to-l after:from-transparent after:to-indigo-200/50">
+              <span className="inline-flex bg-gradient-to-r from-indigo-500 to-indigo-200 bg-clip-text text-transparent">
+              Why We Believe in Involvement
+              </span>
+            </div>
+        <blockquote className="text-xl md:text-1xl  font-semibold text-gray-100">
+         
+          <footer className="flex flex-col items-center mt-6">
+            <p className="animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,theme(colors.gray.200),theme(colors.indigo.200),theme(colors.gray.50),theme(colors.indigo.300),theme(colors.gray.200))] bg-[length:200%_auto] bg-clip-text pb-4 font-nacelle font-semibold text-transparent">
+            “Tell me and I forget. Teach me and I remember. Involve me and I learn.”
+          </p>
+            <div>
+              <span className="text-indigo-400">- Benjamin Franklin</span>
+            </div>
+          </footer>
+        </blockquote>
+      </div>
+    </section>
+     <section className="relative overflow-hidden">
       <div
         className="pointer-events-none absolute bottom-0 left-1/2 -z-10 -mb-24 ml-20 -translate-x-1/2"
         aria-hidden="true"
@@ -44,5 +66,8 @@ export default function Cta() {
         </div>
       </div>
     </section>
+   
+    </>
+   
   );
 }
