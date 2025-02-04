@@ -131,7 +131,21 @@ export default function AboutUs() {
 
   {/* Updated Team Cards Layout */}
   <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-6 place-items-center">
-   
+    {/* Team Member Card 1 */}
+    <div className="rounded-lg shadow-lg p-6 max-w-xs">
+      <Image
+        src="/images/Ashok.jpeg" // Replace with the team member's image
+        alt="Core Member"
+        width={150}
+        height={150}
+        className="rounded-full mx-auto"
+      />
+      <h3 className="text-xl font-semibold text-gray-200 mt-4">Ashok</h3>
+      <p className="text-indigo-400 text-sm">Founder and Lead Mentor at NodSync</p>
+      <p className="text-gray-400 mt-2">
+      Founder of NodSync, passionate mentor, and guide with experience in projects, competitions, and empowering others to succeed.
+      </p>
+    </div>
 {/* Team Member Card 2 */}
 <div className="rounded-lg shadow-lg p-6 max-w-xs">
       <Image
@@ -142,27 +156,13 @@ export default function AboutUs() {
         className="rounded-full mx-auto"
       />
       <h3 className="text-xl font-semibold text-gray-200 mt-4">Logesh Krishna</h3>
-      <p className="text-indigo-400 text-sm">Co-founder of NodSync</p>
+      <p className="text-indigo-400 text-sm">Co-founder & Coding Lead at NodSync</p>
       <p className="text-gray-400 mt-2">
       With expertise in competitive programming and automation, he tackles complex coding challenges and drives efficiency, optimizing development at NodSync.
       </p>
     </div>
 
-     {/* Team Member Card 1 */}
-     <div className="rounded-lg shadow-lg p-6 max-w-xs">
-      <Image
-        src="/images/Photo5.1.jpg" // Replace with the team member's image
-        alt="Core Member"
-        width={150}
-        height={150}
-        className="rounded-full mx-auto"
-      />
-      <h3 className="text-xl font-semibold text-gray-200 mt-4">Ashok</h3>
-      <p className="text-indigo-400 text-sm">Founder of NodSync</p>
-      <p className="text-gray-400 mt-2">
-      Founder of NodSync, passionate mentor, and guide with experience in projects, competitions, and empowering others to succeed.
-      </p>
-    </div>
+    
     {/* Team Member Card 3 */}
     <div className="rounded-lg shadow-lg p-6 max-w-xs ">
       <Image
