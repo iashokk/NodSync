@@ -66,19 +66,19 @@ export default function ContactUs() {
               </div>
 
               <div>
-                <label htmlFor="country" className="block text-sm font-medium text-gray-200">
-                  Country
+                <label htmlFor="role" className="block text-sm font-medium text-gray-200">
+                  I'm a 
                 </label>
                 <select
-                  id="country"
-                  name="country"
+                  id="role"
+                  name="role"
                   className="mt-1 w-full rounded-md border-gray-700 bg-gray-900 text-gray-200 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 >
-                  <option value="">Select a country</option>
-                  <option value="US">Pondicherry</option>
-                  <option value="IN">Chennai</option>
-                  <option value="UK">TamilNadu</option>
-                  <option value="UK">Bengaluru</option>
+                  <option value="">Select a role</option>
+                  <option value="Student">Student</option>
+                  <option value="Fresher">Fresher</option>
+                  <option value="Work">Working Professional</option>
+                  <option value="Other">Other</option>
                   {/* Add more options as needed */}
                 </select>
               </div>
