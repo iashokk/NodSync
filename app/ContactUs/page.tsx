@@ -18,7 +18,7 @@ export default function ContactUs() {
             >
               Contact Us
             </h1>
-            <p className="text-lg text-indigo-200/65">Need guidance for your projects, competitions, or placements? Let’s connect! Tell us what you need, and we’ll reach out to help you sync smarter!</p>
+            <p className="text-xl text-indigo-200/65">Need guidance for your projects, competitions, or placements? Let’s connect! Tell us what you need, and we’ll reach out to help you sync smarter!</p>
           </div>
 
           {/* Contact Form */}

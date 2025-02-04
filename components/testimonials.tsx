@@ -39,6 +39,14 @@ const testimonials = [
     categories: [1, 3, 5],
   },
   {
+    img: GirlImg,
+    name: "Mithra",
+    place: "Kerala, India",
+    content:
+      "I sincerely appreciate the effort and dedication you put into my MTech Finance Project. Your guidance and expertise were invaluable in completing the work successfully. Thank you once again for your hardwork and support.",
+    categories: [1, 3, 5],
+  },
+  {
     img: BoyImg,
     name: "KamalRaj",
     place: "Vellore, India",

@@ -8,50 +8,45 @@ import Link from "next/link";
 const blogPosts = [
   {
     id: 1,
-    image: "/images/Photo4.jpg",
+    image: "https://miro.medium.com/v2/resize:fit:1100/format:webp/1*7yRGIPGoeeKDjMF9r19r2g.jpeg",
     category: "AI Content",
-    title: "The ultimate guide to AI management in the age of new tools",
-    authorImage: "/images/Photo5.1.jpg",
-    author: "Ashok K",
-    role: "Developer",
-
+    title: "Believe it or Not: AI can’t steal your food but it can…",
+    authorImage: "/images/Mohamed Fazil.jpg",
+    author: "Fazil M",
+    role: " AI Developer",
+    link: "https://medium.com/@mfazil2409/believe-it-or-not-ai-cant-steal-your-food-but-it-can-e907c6a2ae3f",
   },
   {
     id: 2,
-    image: "/images/Photo5.jpg",
-    category: "Automation",
-    title: "New AI releases for better, faster, more personalized support",
-    authorImage: "/images/Photo5.1.jpg",
+    image: "https://miro.medium.com/v2/resize:fit:2000/format:webp/1*MZqFvIKFpwb7pXmRIy-0Gg.png",
+    category: "AI Content",
+    title: "From Data to Deployment: Sentiment Analysis of Financial News.",
+    authorImage: "/images/Mohamed Fazil.jpg",
     author: "Fazil M",
     role: "AI Developer",
+    link: "https://medium.com/@mfazil2409/from-data-to-deployment-sentiment-analysis-of-financial-news-780169e85b20",
   },
   {
     id: 3,
-    image: "/images/Photo5.jpg",
-    category: "Customer Service",
-    title: "Unlocking customer strategic potential with AI",
-    authorImage: "/images/Photo5.1.jpg",
-    author: "Ashok K",
-    role: "Developer",
+    image: "https://miro.medium.com/v2/resize:fit:1100/format:webp/1*5t0zYC0oWGmfotrlNHlpYQ.jpeg",
+    category: "AI Content",
+    title: "Why did AI lie to me?",
+    authorImage: "/images/Mohamed Fazil.jpg",
+    author: "Fazil M",
+    role: "AI Developer",
+    link: "https://medium.com/@mfazil2409/why-did-ai-lie-to-me-74e442ace482",
   },
   {
     id: 4,
-    image: "/images/Photo5.jpg",
-    category: "Automation",
-    title: "New AI releases for better, faster, more personalized support",
-    authorImage: "/images/Photo5.1.jpg",
+    image: "https://miro.medium.com/v2/resize:fit:1100/format:webp/1*Udz6YnGrUtr926yL3CZj0Q.png",
+    category: "AI Content",
+    title: "Build and Blog Marathon: Building a UPSC Preparation Assistant with Generative AI",
+    authorImage: "/images/Mohamed Fazil.jpg",
     author: "Fazil M",
     role: "AI Developer",
+    link: "https://medium.com/google-cloud/build-and-blog-marathon-building-a-upsc-preparation-assistant-with-generative-ai-8b28602befea",
   },
-  {
-    id: 5,
-    image: "/images/Photo5.jpg",
-    category: "Customer Service",
-    title: "Unlocking customer strategic potential with AI",
-    authorImage: "/images/Photo5.1.jpg",
-    author: "Ashok K",
-    role: "Developer",
-  },
+ 
 ];
 
 export default function Blog() {
@@ -67,12 +62,14 @@ export default function Blog() {
             >
               Blogs
             </h1>
+            <p className="text-2xl text-indigo-200/65">Discover the latest news, tips and user research insights from NODSYNC.</p>
           </div>
 
           {/* Card Grid */}
           <div className="grid gap-8 md:grid-cols-3">
             {blogPosts.map((post) => (
-              <div key={post.id} className="rounded-lg  p-5 shadow-lg">
+              <Link key={post.id} href={post.link ?? "#"} passHref target="_blank" rel="noopener noreferrer">
+              <div key={post.id} className="cursor-pointer rounded-lg p-5 shadow-lg transition-transform transform hover:scale-105">
                 <img
                   src={post.image}
                   alt={post.category}
@@ -95,6 +92,7 @@ export default function Blog() {
                   </span>
                 </div>
               </div>
+              </Link>
             ))}
           </div>
         </div>
