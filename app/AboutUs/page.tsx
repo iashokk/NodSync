@@ -112,6 +112,73 @@ export default function AboutUs() {
           </div>
         </div>
       </div>
+
+
+      <div className="mt-1 mb-20">
+  <div className="mx-auto max-w-3xl text-center md:pb-10">
+    <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-gradient-to-r before:from-transparent before:to-indigo-200/50 after:h-px after:w-8 after:bg-gradient-to-l after:from-transparent after:to-indigo-200/50">
+      <span className="inline-flex bg-gradient-to-r from-indigo-500 to-indigo-200 bg-clip-text text-transparent">
+        Team
+      </span>
+    </div>
+    <h2 className="animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,theme(colors.gray.200),theme(colors.indigo.200),theme(colors.gray.50),theme(colors.indigo.300),theme(colors.gray.200))] bg-[length:200%_auto] bg-clip-text pb-4 font-nacelle text-3xl font-semibold text-transparent md:text-4xl">
+      Meet Our Core Team
+    </h2>
+    <p className="text-lg text-indigo-200/65">
+    NodSync is built on the efforts of a talented and passionate group of individuals. While every team member has played a crucial role in making this platform a reality, here are the core contributors we’d like to highlight
+    </p>
+  </div>
+
+  {/* Updated Team Cards Layout */}
+  <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-6 place-items-center">
+    {/* Team Member Card 1 */}
+    <div className="rounded-lg shadow-lg p-6 max-w-xs">
+      <Image
+        src="/images/Photo5.1.jpg" // Replace with the team member's image
+        alt="Core Member"
+        width={150}
+        height={150}
+        className="rounded-full mx-auto"
+      />
+      <h3 className="text-xl font-semibold text-gray-200 mt-4">Ashok</h3>
+      <p className="text-indigo-400 text-sm">Founder of NodSync</p>
+      <p className="text-gray-400 mt-2">
+        Founder of NodSync, passionate mentor, and guide with experience in projects, competitions, and empowering others to succeed.
+      </p>
+    </div>
+{/* Team Member Card 2 */}
+<div className="rounded-lg shadow-lg p-6 max-w-xs">
+      <Image
+        src="/images/Photo5.1.jpg" // Replace with the team member's image
+        alt="Core Member"
+        width={150}
+        height={150}
+        className="rounded-full mx-auto"
+      />
+      <h3 className="text-xl font-semibold text-gray-200 mt-4">Logesh Krishna</h3>
+      <p className="text-indigo-400 text-sm">Co-founder of NodSync</p>
+      <p className="text-gray-400 mt-2">
+      With expertise in competitive programming and automation, he excels at solving complex coding challenges. His technical skills help streamline development, ensuring efficiency at NodSync.
+      </p>
+    </div>
+    {/* Team Member Card 3 */}
+    <div className="rounded-lg shadow-lg p-6 max-w-xs ">
+      <Image
+        src="/images/Mohamed Fazil.jpg" // Replace with the team member's image
+        alt="Core Member"
+        width={150}
+        height={150}
+        className="rounded-full mx-auto"
+      />
+      <h3 className="text-xl font-semibold text-gray-200 mt-4">Mohamed Fazil</h3>
+      <p className="text-indigo-400 text-sm">Co-founder and Lead Mentor at NodSync</p>
+      <p className="text-gray-400 mt-2">
+        With expertise in project guidance, competition preparation, and mentorship, he has been instrumental in shaping NodSync’s vision.
+      </p>
+    </div>
+  </div>
+</div>
+
     </section>
   );
 }
