@@ -3,12 +3,14 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useAuth } from "@/components/authContext";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isClient, setIsClient] = useState(false);  // Track if it's running on the client side
+  const { setLoggedIn } = useAuth();
 
   // Initialize router in useEffect to ensure it runs client-side
   const router = useRouter();
@@ -35,6 +37,8 @@ export default function SignIn() {
       // Only redirect if we're on the client-side
       if (isClient) {
         localStorage.setItem("user", JSON.stringify({ email }));
+        // Immediately update the global auth state
+        setLoggedIn(true);
         router.push("/");  // Redirect to homepage
       }
     } else {

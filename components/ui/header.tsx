@@ -3,27 +3,28 @@
 import Link from "next/link";
 import Logo from "./logo";
 import { useState, useEffect } from "react";
+import { useAuth } from "../authContext";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const {isLoggedIn, setLoggedIn} = useAuth();
   // Function to close the mobile menu
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
   };
 
-   // Check the login state on initial render
-   useEffect(() => {
-    // Check if the user is logged in when the component mounts
+  // Check the login state on initial render
+  useEffect(() => {
     const user = localStorage.getItem("user");
     if (user) {
-      setIsLoggedIn(true);
+      setLoggedIn(true);
     }
-  }, []); // Empty dependency array means this effect runs once on component mount
+  }, [setLoggedIn]);
+
   // Handle Logout
   const handleLogout = () => {
-    localStorage.removeItem("user"); // Remove user data from localStorage
-    setIsLoggedIn(false); // Update the login status
+    localStorage.removeItem("user");
+    setLoggedIn(false);
   };
 
   return (
