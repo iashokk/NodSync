@@ -78,12 +78,12 @@ export default function SignIn() {
                   >
                     Password
                   </label>
-                  <Link
+                  {/* <Link
                     className="text-sm text-gray-600 hover:underline"
                     href="/reset-password"
                   >
                     Forgot?
-                  </Link>
+                  </Link> */}
                 </div>
                 <input
                   id="password"
@@ -104,12 +104,6 @@ export default function SignIn() {
             <div className="mt-6 space-y-5">
               <button className="btn w-full bg-gradient-to-t from-indigo-600 to-indigo-500 bg-[length:100%_100%] bg-[bottom] text-white shadow-[inset_0px_1px_0px_0px_theme(colors.white/.16)] hover:bg-[length:100%_150%]">
                 Sign in
-              </button>
-              <div className="flex items-center gap-3 text-center text-sm italic text-gray-600 before:h-px before:flex-1 before:bg-gradient-to-r before:from-transparent before:via-gray-400/25 after:h-px after:flex-1 after:bg-gradient-to-r after:from-transparent after:via-gray-400/25">
-                or
-              </div>
-              <button className="btn relative w-full bg-gradient-to-b from-gray-800 to-gray-800/60 bg-[length:100%_100%] bg-[bottom] text-gray-300">
-                Sign In with Google
               </button>
             </div>
           </form>
