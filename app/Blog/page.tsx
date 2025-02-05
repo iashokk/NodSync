@@ -3,6 +3,7 @@ export const metadata = {
   description: "Blogs",
 };
 
+import Footer from "@/components/ui/footer";
 import Link from "next/link";
 
 const blogPosts = [
@@ -97,6 +98,7 @@ export default function Blog() {
           </div>
         </div>
       </div>
+      <Footer/>
     </section>
   );
 }

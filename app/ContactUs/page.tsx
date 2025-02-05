@@ -1,5 +1,6 @@
 "use client";
 
+import Footer from "@/components/ui/footer";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -208,6 +209,7 @@ export default function ContactUs() {
           </form>
         </div>
       </div>
+      <Footer/>
     </section>
   );
 }

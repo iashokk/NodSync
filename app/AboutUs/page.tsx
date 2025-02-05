@@ -5,6 +5,7 @@ export const metadata = {
 
 import Link from "next/link";
 import Image from "next/image";
+import Footer from "@/components/ui/footer";
 
 export default function AboutUs() {
   return (
@@ -180,7 +181,7 @@ export default function AboutUs() {
     </div>
   </div>
 </div>
-
+<Footer/>
     </section>
   );
 }
