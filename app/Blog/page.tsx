@@ -61,7 +61,7 @@ export default function Blog() {
               className="animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,theme(colors.gray.200),theme(colors.indigo.200),theme(colors.gray.50),theme(colors.indigo.300),theme(colors.gray.200))] bg-[length:200%_auto] bg-clip-text pb-5 font-nacelle text-4xl font-semibold text-transparent md:text-5xl"
               data-aos="fade-up"
             >
-              Blogs
+              Resources
             </h1>
             <p className="text-2xl text-indigo-200/65">Discover the latest news, tips and user research insights from NODSYNC.</p>
           </div>

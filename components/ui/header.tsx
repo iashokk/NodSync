@@ -51,7 +51,7 @@ export default function Header() {
               </li>
               <li>
                 <Link href="/Blog" className="text-[1.02rem] hover:text-white transition">
-                  Blogs
+                  Resources
                 </Link>
               </li>
               <li>
