@@ -194,8 +194,7 @@ export default function Features() {
                 Stay Ahead with Technology Trends
               </h3>
               <p className="text-indigo-200/65">
-                Stay updated with cutting-edge technologies like Gen-AI, cloud
-                computing, and blockchain. We provide workshops, resources, and
+                Stay updated with cutting-edge technologies like Gen-AI, Quantum Computing, and Cybersecurity. We provide workshops, resources, and
                 insights to help you remain future-ready and competitive.
               </p>
             </article>
