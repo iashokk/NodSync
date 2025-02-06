@@ -140,7 +140,7 @@ export default function SignUp() {
            
             <div className="mt-6 space-y-5">
               <button className="btn w-full bg-gradient-to-t from-indigo-600 to-indigo-500 text-white">
-                Register
+                Sign Up
               </button>
             </div>
           </form>
