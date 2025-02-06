@@ -10,13 +10,18 @@ export default function ContactUs() {
     name: "",
     surname: "",
     email: "",
+    number:"",
     role: "",
     topic: "",
     subject: "",
     description: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -46,6 +51,7 @@ export default function ContactUs() {
           name: "",
           surname: "",
           email: "",
+          number:"",
           role: "",
           topic: "",
           subject: "",
@@ -73,14 +79,24 @@ export default function ContactUs() {
             >
               Contact Us
             </h1>
-            <p className="text-xl text-indigo-200/65">Need guidance for your projects, competitions, or placements? Let’s connect! Tell us what you need, and we’ll reach out to help you sync smarter!</p>
+            <p className="text-xl text-indigo-200/65">
+              Need guidance for your projects, competitions, or placements?
+              Let’s connect! Tell us what you need, and we’ll reach out to help
+              you sync smarter!
+            </p>
           </div>
           <ToastContainer />
           {/* Contact Form */}
-          <form onSubmit={handleSubmit} className="mx-auto max-w-4xl space-y-6 p-8 rounded-lg shadow-lg">
+          <form
+            onSubmit={handleSubmit}
+            className="mx-auto max-w-4xl space-y-6 p-8 rounded-lg shadow-lg"
+          >
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-200">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-gray-200"
+                >
                   Name
                 </label>
                 <input
@@ -95,7 +111,10 @@ export default function ContactUs() {
               </div>
 
               <div>
-                <label htmlFor="surname" className="block text-sm font-medium text-gray-200">
+                <label
+                  htmlFor="surname"
+                  className="block text-sm font-medium text-gray-200"
+                >
                   Surname
                 </label>
                 <input
@@ -112,7 +131,10 @@ export default function ContactUs() {
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-200">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-200"
+                >
                   Email
                 </label>
                 <input
@@ -125,10 +147,31 @@ export default function ContactUs() {
                   className="mt-1 w-full rounded-md border-gray-700 bg-gray-900 text-gray-200 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 />
               </div>
-
               <div>
-                <label htmlFor="role" className="block text-sm font-medium text-gray-200">
-                  I'm a 
+                <label
+                  htmlFor="number"
+                  className="block text-sm font-medium text-gray-200"
+                >
+                  Phone Number
+                </label>
+                <input
+                  type="number"
+                  id="number"
+                  name="number"
+                  value={formData.number}
+                  onChange={handleChange}
+                  placeholder="Your Mobile Number"
+                  className="mt-1 w-full rounded-md border-gray-700 bg-gray-900 text-gray-200 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <div>
+                <label
+                  htmlFor="role"
+                  className="block text-sm font-medium text-gray-200"
+                >
+                  I'm a
                 </label>
                 <select
                   id="role"
@@ -141,36 +184,44 @@ export default function ContactUs() {
                   <option value="Student">Student</option>
                   <option value="Fresher">Fresher</option>
                   <option value="Work">Working Professional</option>
-                  <option value="Other">Other</option>
+                  <option value="Other">Others</option>
                   {/* Add more options as needed */}
+                </select>
+              </div>
+              <div>
+                <label
+                  htmlFor="topic"
+                  className="block text-sm font-medium text-gray-200"
+                >
+                  Topic
+                </label>
+                <select
+                  id="topic"
+                  name="topic"
+                  value={formData.topic}
+                  onChange={handleChange}
+                  className="mt-1 w-full rounded-md border-gray-700 bg-gray-900 text-gray-200 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                >
+                  <option value="">Select a topic</option>
+                  <option value="project_guidance">Project Guidance</option>
+                  <option value="competition_prep">
+                    Competition Preparation
+                  </option>
+                  <option value="placement_assistance">
+                    Placement Assistance
+                  </option>
+                  <option value="coding_help">Coding Help</option>
+                  <option value="academic_support">Academic Support</option>
+                  <option value="general">General Inquiry</option>
                 </select>
               </div>
             </div>
 
             <div>
-  <label htmlFor="topic" className="block text-sm font-medium text-gray-200">
-    Topic
-  </label>
-  <select
-    id="topic"
-    name="topic"
-    value={formData.topic}
-    onChange={handleChange}
-    className="mt-1 w-full rounded-md border-gray-700 bg-gray-900 text-gray-200 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-  >
-    <option value="">Select a topic</option>
-    <option value="project_guidance">Project Guidance</option>
-    <option value="competition_prep">Competition Preparation</option>
-    <option value="placement_assistance">Placement Assistance</option>
-    <option value="coding_help">Coding Help</option>
-    <option value="academic_support">Academic Support</option>
-    <option value="general">General Inquiry</option>
-  </select>
-</div>
-
-
-            <div>
-              <label htmlFor="subject" className="block text-sm font-medium text-gray-200">
+              <label
+                htmlFor="subject"
+                className="block text-sm font-medium text-gray-200"
+              >
                 Subject
               </label>
               <input
@@ -185,7 +236,10 @@ export default function ContactUs() {
             </div>
 
             <div>
-              <label htmlFor="description" className="block text-sm font-medium text-gray-200">
+              <label
+                htmlFor="description"
+                className="block text-sm font-medium text-gray-200"
+              >
                 Full Description
               </label>
               <textarea
@@ -209,7 +263,7 @@ export default function ContactUs() {
           </form>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </section>
   );
 }
