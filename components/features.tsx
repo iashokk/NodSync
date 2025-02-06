@@ -36,14 +36,17 @@ export default function Features() {
           <div className="mx-auto max-w-3xl pb-4 text-center md:pb-12">
             <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-gradient-to-r before:from-transparent before:to-indigo-200/50 after:h-px after:w-8 after:bg-gradient-to-l after:from-transparent after:to-indigo-200/50">
               <span className="inline-flex bg-gradient-to-r from-indigo-500 to-indigo-200 bg-clip-text text-transparent">
-              A Journey We’ll Take Together
+                A Journey We’ll Take Together
               </span>
             </div>
             <h2 className="animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,theme(colors.gray.200),theme(colors.indigo.200),theme(colors.gray.50),theme(colors.indigo.300),theme(colors.gray.200))] bg-[length:200%_auto] bg-clip-text pb-4 font-nacelle text-3xl font-semibold text-transparent md:text-4xl">
-            We Guide, You Learn
+              We Guide, You Learn
             </h2>
             <p className="text-lg text-indigo-200/65">
-            We don't just help you complete your projects; we mentor you through the entire process. Our goal is to empower you with the knowledge, skills, and confidence needed to excel in your academic and professional journey. Learn, grow, and succeed with us.
+              We don't just help you complete your projects; we mentor you
+              through the entire process. Our goal is to empower you with the
+              knowledge, skills, and confidence needed to excel in your academic
+              and professional journey. Learn, grow, and succeed with us.
             </p>
           </div>
           <div className="flex justify-center pb-4 md:pb-12" data-aos="fade-up">
@@ -71,12 +74,13 @@ export default function Features() {
                 />
               </svg>
               <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
-              Win a Competition and Participate More
+                Win Competitions Like a Pro!
               </h3>
               <p className="text-indigo-200/65">
-               Discover strategies to win competitions, from preparation to effective presentation, 
-               and learn how to find and excel in relevant competitions and continuously 
-               improve your skills to stay competitive
+                Unlock winning strategies for competitions, from perfect
+                preparation to impactful presentations. Learn how to find
+                relevant opportunities, excel with confidence, and continuously
+                sharpen your skills.
               </p>
             </article>
             <article>
@@ -90,11 +94,13 @@ export default function Features() {
                 <path d="M19 6H0v2h17v8H7v-6H5v8h19v-2h-5V6Z" />
               </svg>
               <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
-              Plan of Action on How to Get Your Dream Job
+                Plan Your Path to Your Dream Job
               </h3>
               <p className="text-indigo-200/65">
-              Strategic plan to assess your strengths, build a standout resume, network, 
-              and prepare for interviews to land your dream job.
+                Craft a standout resume, build professional networks, and
+                prepare strategically for interviews. Our step-by-step guidance
+                ensures you are fully equipped to land the career you’ve always
+                wanted.
               </p>
             </article>
             <article>
@@ -111,12 +117,12 @@ export default function Features() {
                 />
               </svg>
               <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
-              Step-by-Step Guidance on How to Complete your Project with Ease
+                Complete Your Project with Ease
               </h3>
               <p className="text-indigo-200/65">
-              Navigate your project idea effortlessly 
-              with our comprehensive support, from topic selection to final presentation.
-
+                Turn your project ideas into reality with our end-to-end
+                support. From selecting a topic to polishing the final
+                presentation, we simplify the entire process for you.
               </p>
             </article>
             <article>
@@ -138,11 +144,12 @@ export default function Features() {
                 <path d="m16.321 2-.5-.866 1.733-1 .5.866A22 22 0 0 1 21 12c0 3.852-1.017 7.636-2.948 10.97l-.502.865-1.73-1.003.501-.865A19.878 19.878 0 0 0 19 12a20 20 0 0 0-2.679-10Z" />
               </svg>
               <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
-              One-on-One Guidance
+                One-on-One Expert Guidance
               </h3>
               <p className="text-indigo-200/65">
-              Get personalized advice and mentorship directly from us. 
-              Whether you're solving coding problems, preparing for placements. We are here to help you every step of the way.
+                Receive personalized mentorship tailored to your needs. Whether
+                it’s solving complex coding problems, preparing for placements,
+                or career advice, we’re here to guide you every step of the way.
               </p>
             </article>
             <article>
@@ -159,11 +166,37 @@ export default function Features() {
                 <path d="m7.454 2.891.891-.454L7.437.655l-.891.454a12 12 0 0 0 0 21.382l.89.454.91-1.781-.892-.455a10 10 0 0 1 0-17.818ZM17.456 1.11l-.891-.454-.909 1.782.891.454a10 10 0 0 1 0 17.819l-.89.454.908 1.781.89-.454a12 12 0 0 0 0-21.382Z" />
               </svg>
               <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
-              Mastery Roadmap
+                Mastery Roadmap to Success
               </h3>
               <p className="text-indigo-200/65">
-              Get a step-by-step roadmap for studying a programming language or concept. 
-              We provide structured guidance to help you master new skills efficiently and effectively.
+                Achieve your learning goals with structured plans for
+                programming languages and technical concepts. We’ll help you
+                master new skills quickly and effectively with our
+                expert-designed roadmap.
+              </p>
+            </article>
+            <article>
+              <svg
+                className="mb-3 fill-indigo-500"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width={24}
+                height={24}
+              >
+                <path
+                  fillOpacity=".48"
+                  d="M12 2a10 10 0 0 1 9.95 9.15l.05.85h-2a8 8 0 1 0-7.95 9l-.05.85A10 10 0 1 1 12 2Z"
+                />
+                <path d="M12 7a1 1 0 0 1 1 1v3h2a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1Z" />
+                <circle cx="12" cy="12" r="1" />
+              </svg>
+              <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
+                Stay Ahead with Technology Trends
+              </h3>
+              <p className="text-indigo-200/65">
+                Stay updated with cutting-edge technologies like Gen-AI, cloud
+                computing, and blockchain. We provide workshops, resources, and
+                insights to help you remain future-ready and competitive.
               </p>
             </article>
           </div>

@@ -61,7 +61,6 @@ export default function Header() {
               </li>
             </ul>
           </nav>
-
           {/* Sign In, Register or Logout based on login status */}
           <ul className="flex items-center gap-3">
             {isLoggedIn ? (
