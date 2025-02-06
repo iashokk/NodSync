@@ -6,7 +6,7 @@ import bcrypt from 'bcryptjs';
 export async function POST(req: Request) {
   try {
     // Parse the request body
-    const { name, college, email, password } = await req.json();
+    const { name, organization, email, password } = await req.json();
 
     // Connect to MongoDB
     await connect();
@@ -26,7 +26,7 @@ export async function POST(req: Request) {
     // Create a new user
     const newUser = new User({
       name,
-      college,
+      organization,
       email,
       password: hashedPassword,
     });

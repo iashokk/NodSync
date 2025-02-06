@@ -39,14 +39,14 @@ export default function SignUp() {
                   className="mb-1 block text-sm font-medium text-indigo-200/65"
                   htmlFor="name"
                 >
-                  College Name <span className="text-red-500">*</span>
+                  organization Name <span className="text-red-500">*</span>
                 </label>
                 <input
-                  id="college"
-                  name="college"
+                  id="organization"
+                  name="organization"
                   type="text"
                   className="form-input w-full"
-                  placeholder="Your college name"
+                  placeholder="Your organization name"
                   required
                 />
               </div>

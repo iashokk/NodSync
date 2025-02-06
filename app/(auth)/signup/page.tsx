@@ -10,7 +10,7 @@ import Link from 'next/link';
 export default function SignUp() {
   const [formData, setFormData] = useState({
     name: '',
-    college: '',
+    organization: '',
     email: '',
     password: '',
   });
@@ -46,7 +46,7 @@ export default function SignUp() {
         setSuccessMessage('User registered successfully!');
         setFormData({
           name: '',
-          college: '',
+          organization: '',
           email: '',
           password: '',
         }); // Clear form data
@@ -88,16 +88,16 @@ export default function SignUp() {
                 />
               </div>
               <div>
-                <label className="mb-1 block text-sm font-medium text-indigo-200/65" htmlFor="college">
-                  College Name <span className="text-red-500">*</span>
+                <label className="mb-1 block text-sm font-medium text-indigo-200/65" htmlFor="organization">
+                  Organization Name <span className="text-red-500">*</span>
                 </label>
                 <input
-                  id="college"
-                  name="college"
+                  id="organization"
+                  name="organization"
                   type="text"
                   className="form-input w-full"
-                  placeholder="Your college name"
-                  value={formData.college}
+                  placeholder="Your organization name"
+                  value={formData.organization}
                   onChange={handleInputChange}
                   required
                 />
