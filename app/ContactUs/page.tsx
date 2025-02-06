@@ -155,7 +155,7 @@ export default function ContactUs() {
                   Phone Number
                 </label>
                 <input
-                  type="number"
+                  type="tel"
                   id="number"
                   name="number"
                   value={formData.number}
