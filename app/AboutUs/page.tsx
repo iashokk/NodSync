@@ -144,7 +144,7 @@ export default function AboutUs() {
       <h3 className="text-xl font-semibold text-gray-200 mt-4">Ashok</h3>
       <p className="text-indigo-400 text-sm">Founder and Lead Mentor at NodSync</p>
       <p className="text-gray-400 mt-2">
-      Founder of NodSync, passionate mentor, and guide with experience in projects, competitions, and empowering others to succeed.
+      Founder of NodSync, passionate about mentoring and guiding individuals to succeed in projects and competitions.
       </p>
     </div>
 {/* Team Member Card 2 */}
@@ -159,7 +159,7 @@ export default function AboutUs() {
       <h3 className="text-xl font-semibold text-gray-200 mt-4">Logesh Krishna</h3>
       <p className="text-indigo-400 text-sm">Co-founder & Coding Lead at NodSync</p>
       <p className="text-gray-400 mt-2">
-      With expertise in competitive programming and automation, he tackles complex coding challenges and drives efficiency, optimizing development at NodSync.
+      With expertise in competitive programming and automation, he tackles coding challenges and optimizes development processes at NodSync.
       </p>
     </div>
 
@@ -176,7 +176,7 @@ export default function AboutUs() {
       <h3 className="text-xl font-semibold text-gray-200 mt-4">Mohamed Fazil</h3>
       <p className="text-indigo-400 text-sm">Co-founder and Lead Mentor at NodSync</p>
       <p className="text-gray-400 mt-2">
-        With expertise in project guidance, competition preparation, and mentorship, he has been instrumental in shaping NodSync’s vision.
+      He plays a key role in shaping NodSync’s vision, focusing on project guidance, competition preparation and professional growth.
       </p>
     </div>
   </div>
