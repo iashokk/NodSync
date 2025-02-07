@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Sign In - Open PRO",
-  description: "Page description",
+  title: "Sign In",
+  description: "Sync Smarter , One Nod at a Time",
 };
 
 import Link from "next/link";

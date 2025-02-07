@@ -1,6 +1,6 @@
 export const metadata = {
   title: "About Us - NodSync",
-  description: "About me",
+  description: "Sync Smarter , One Nod at a Time",
 };
 
 import Link from "next/link";

@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Reset Password - Open PRO",
-  description: "Page description",
+  description: "Sync Smarter , One Nod at a Time",
 };
 
 import Link from "next/link";

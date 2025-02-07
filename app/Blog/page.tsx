@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Blog - NodSync",
-  description: "Blogs",
+  title: "Resources - NodSync",
+  description: "Sync Smarter , One Nod at a Time",
 };
 
 import Footer from "@/components/ui/footer";
