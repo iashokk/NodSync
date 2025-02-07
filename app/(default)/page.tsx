@@ -1,6 +1,6 @@
 export const metadata = {
   title: "NodSync",
-  description: "Page description",
+  description: "Sync Smarter , One Nod at a Time",
 };
 
 import PageIllustration from "@/components/page-illustration";
