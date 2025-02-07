@@ -27,6 +27,49 @@ export default function ContactUs() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Client-side validation:
+    if (!formData.name.trim()) {
+      toast.error("Name is required");
+      return;
+    }
+    if (!formData.surname.trim()) {
+      toast.error("Surname is required");
+      return;
+    }
+    if (!formData.email.trim()) {
+      toast.error("Email is required");
+      return;
+    }
+    if (!isValidEmail(formData.email)) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+    if (!formData.number.trim()) {
+      toast.error("Phone Number is required");
+      return;
+    }
+    if (!isValidPhoneNumber(formData.number)) {
+      toast.error("Please enter a valid phone number");
+      return;
+    }
+    if (!formData.role.trim()) {
+      toast.error("Role is required");
+      return;
+    }
+    if (!formData.topic.trim()) {
+      toast.error("Topic is required");
+      return;
+    }
+    if (!formData.subject.trim()) {
+      toast.error("Subject is required");
+      return;
+    }
+    if (!formData.description.trim()) {
+      toast.error("Full Description is required");
+      return;
+    }
+
     const formDataObject = new FormData(e.target as HTMLFormElement);
     const data = Object.fromEntries(formDataObject.entries());
 
@@ -267,3 +310,15 @@ export default function ContactUs() {
     </section>
   );
 }
+
+const isValidEmail = (email: string) => {
+  // Basic email regex pattern
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
+
+const isValidPhoneNumber = (phone: string) => {
+  // A simple phone number regex (adjust according to your needs)
+  const phoneRegex = /^\+?[0-9]{10,15}$/;
+  return phoneRegex.test(phone);
+};
