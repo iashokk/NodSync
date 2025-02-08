@@ -1,4 +1,4 @@
-// app/api/models/User.ts
+// app/api/models/Contact.ts
 import mongoose from 'mongoose';
 
 const ContactSchema = new mongoose.Schema({
@@ -12,4 +12,4 @@ const ContactSchema = new mongoose.Schema({
     description: { type: String, required: true },
 });
 
-export default mongoose.models.User || mongoose.model('Contact', ContactSchema);
+export default mongoose.models.Contact || mongoose.model('Contact', ContactSchema);
