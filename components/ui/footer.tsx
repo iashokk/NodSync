@@ -20,12 +20,13 @@ export default function Footer() {
           />
         </div>
         <div className="flex flex-col items-center justify-center gap-4 py-8 md:flex-row md:justify-between md:py-12">
-          <div className="text-center md:text-left">
-            <p className="text-sm text-indigo-200/65">
-              <Logo /> © NodSync
-              <span className="text-gray-700"> · </span>
-              2025
-            </p>
+          <div className="flex items-center gap-x-1 text-sm text-indigo-200/65">
+            <div className="mr-4">
+              <Logo />
+            </div>
+            <span>© NodSync</span>
+            <span className="text-gray-700">·</span>
+            <span>2025</span>
           </div>
           <div>
             <ul className="flex items-center gap-4">
