@@ -11,6 +11,8 @@ export default function SignIn() {
   const [error, setError] = useState<string | null>(null);
   const [isClient, setIsClient] = useState(false);  // Track if it's running on the client side
   const { setLoggedIn } = useAuth();
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false); // Loading state
+
 
   // Initialize router in useEffect to ensure it runs client-side
   const router = useRouter();
@@ -22,14 +24,15 @@ export default function SignIn() {
   // Sign-in function
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    const res = await fetch("/api/signin", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
+    setIsSubmitting(true); // Show loading state
+try{
+  const res = await fetch("/api/signin", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password }),
+  });
 
     const data = await res.json();
 
@@ -43,6 +46,10 @@ export default function SignIn() {
       }
     } else {
       setError(data.message || "Something went wrong");
+    } }catch (err) {
+      setError('Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false); // Remove loading state
     }
   };
 
@@ -106,8 +113,40 @@ export default function SignIn() {
             )}
 
             <div className="mt-6 space-y-5">
-              <button className="btn w-full bg-gradient-to-t from-indigo-600 to-indigo-500 bg-[length:100%_100%] bg-[bottom] text-white shadow-[inset_0px_1px_0px_0px_theme(colors.white/.16)] hover:bg-[length:100%_150%]">
-                Sign in
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={` btn w-full bg-gradient-to-t from-indigo-600 to-indigo-500 text-white ${
+                  isSubmitting ? 'bg-indigo-400 cursor-not-allowed' : 'btn w-full bg-gradient-to-t from-indigo-600 to-indigo-500 text-white'
+                }`}
+              >
+                {isSubmitting ? (
+                  <>
+                    <svg
+                      className="w-5 h-5 mr-2 animate-spin text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v4l3-3m-3 3l-3-3"
+                      ></path>
+                    </svg>
+                    Signing In...
+                  </>
+                ) : (
+                  'Sign In'
+                )}
               </button>
             </div>
           </form>

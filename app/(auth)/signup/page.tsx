@@ -17,7 +17,7 @@ export default function SignUp() {
 
   const [error, setError] = useState<string>('');
   const [successMessage, setSuccessMessage] = useState<string>('');
-
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false); // Loading state
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -30,6 +30,7 @@ export default function SignUp() {
     e.preventDefault();
     setError(''); // Reset error state
     setSuccessMessage(''); // Reset success message
+    setIsSubmitting(true); // Show loading state
 
     try {
       const response = await fetch('/api/sign-up', {
@@ -55,6 +56,8 @@ export default function SignUp() {
       }
     } catch (err) {
       setError('Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false); // Remove loading state
     }
   };
 
@@ -135,12 +138,44 @@ export default function SignUp() {
             </div>
 
             {/* Display success or error messages */}
-            {error && <p className="text-red-500">{error}</p>}
-            {successMessage && <p className="text-green-500">{successMessage}</p>}
+            {error && <p className="mt-3 text-red-500">{error}</p>}
+            {successMessage && <p className=" mt-3 inline-flex bg-gradient-to-r from-indigo-500 to-indigo-200 bg-clip-text text-transparent">{successMessage}</p>}
            
             <div className="mt-6 space-y-5">
-              <button className="btn w-full bg-gradient-to-t from-indigo-600 to-indigo-500 text-white">
-                Sign Up
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={` btn w-full bg-gradient-to-t from-indigo-600 to-indigo-500 text-white ${
+                  isSubmitting ? 'bg-indigo-400 cursor-not-allowed' : 'btn w-full bg-gradient-to-t from-indigo-600 to-indigo-500 text-white'
+                }`}
+              >
+                {isSubmitting ? (
+                  <>
+                    <svg
+                      className="w-5 h-5 mr-2 animate-spin text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v4l3-3m-3 3l-3-3"
+                      ></path>
+                    </svg>
+                    Signing Up...
+                  </>
+                ) : (
+                  'Sign Up'
+                )}
               </button>
             </div>
           </form>
