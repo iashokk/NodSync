@@ -16,7 +16,7 @@ export default function ContactUs() {
     subject: "",
     description: "",
   });
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -69,6 +69,7 @@ export default function ContactUs() {
       toast.error("Full Description is required");
       return;
     }
+    setIsSubmitting(true);
 
     const formDataObject = new FormData(e.target as HTMLFormElement);
     const data = Object.fromEntries(formDataObject.entries());
@@ -108,6 +109,10 @@ export default function ContactUs() {
       }
     } catch (error) {
       toast.error("An unexpected error occurred.");
+      
+    }
+    finally{
+      setIsSubmitting(false);
     }
   };
   return (
@@ -296,11 +301,40 @@ export default function ContactUs() {
             </div>
 
             <div className="text-center">
-              <button
+            <button
                 type="submit"
-                className="mt-4 w-full rounded-md bg-indigo-600 px-6 py-3 text-white shadow-lg hover:bg-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-300"
+                disabled={isSubmitting}
+                className={`mt-4 w-full flex items-center justify-center rounded-md px-6 py-3 text-white shadow-lg focus:outline-none focus:ring-4 ${
+                  isSubmitting ? "bg-indigo-400 cursor-not-allowed" : "bg-indigo-600 hover:bg-indigo-500"
+                }`}
               >
-                Send →
+                {isSubmitting ? (
+                  <>
+                    <svg
+                      className="w-5 h-5 mr-2 animate-spin text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v4l3-3m-3 3l-3-3"
+                      ></path>
+                    </svg>
+                    Sending...
+                  </>
+                ) : (
+                  "Send →"
+                )}
               </button>
             </div>
           </form>
