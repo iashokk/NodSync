@@ -68,9 +68,7 @@ export default function Workflows() {
                     </span>
                   </div>
                   <p className="text-indigo-100/95">
-                  Receive tailored advice and step-by-step support for your unique journey. 
-                  Whether you’re tackling a project competitions or gearing up for placements, 
-                  NodSync provides the expertise you need.
+                  Receive tailored advice and step-by-step support for your journey. Whether you’re tackling projects, preparing for competitions, or gearing up for placements, NodSync provides the expertise and mentorship you need to succeed.
                   </p>
                 </div>
               </div>
@@ -117,9 +115,7 @@ export default function Workflows() {
                     </span>
                   </div>
                   <p className="text-indigo-100/95">
-                As your friend, my goal is to empower you to achieve your dreams. 
-                  With a hands-on approach and actionable strategies, 
-                  I’ll ensure you feel confident and prepared for what’s next.
+                  More than just a platform, we’re your friend and mentor. Our goal is to empower you with actionable strategies and hands-on guidance, ensuring you feel confident and fully prepared for every challenge ahead.
                   </p>
                 </div>
               </div>
@@ -166,9 +162,7 @@ export default function Workflows() {
                     </span>
                   </div>
                   <p className="text-indigo-100/95">
-                   Access a variety of templates, and frameworks to help you tackle any challenge—be
-                    it project planning, career prep, or academic growth. 
-                    These are designed to save you time and effort!
+                  Stay sharp with expert blogs, cheat sheets, roadmaps, and tech updates! Your go-to resources for acing projects, cracking careers, and mastering skills, our resources are tailored to keep you informed and ready for success.
                   </p>
                 </div>
               </div>
