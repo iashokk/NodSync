@@ -28,8 +28,8 @@ export default function Header() {
   };
 
   return (
-    <header className="z-30 mt-2 w-full md:mt-5">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6">
+    <header className="sticky top-5 z-30 mt-2 w-full md:mt-5">
+      <div className="relative mx-auto max-w-5xl px-4 sm:px-6">
         <div className="relative flex h-14 items-center justify-between rounded-2xl bg-gray-900/90 px-3 before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-transparent before:[background:linear-gradient(to_right,theme(colors.gray.800),theme(colors.gray.700),theme(colors.gray.800))_border-box] before:[mask-composite:exclude_!important] before:[mask:linear-gradient(white_0_0)_padding-box,_linear-gradient(white_0_0)] after:absolute after:inset-0 after:-z-10 after:backdrop-blur-sm">
           {/* Logo */}
           <div className="flex items-center">
@@ -113,29 +113,31 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="absolute left-0 top-14 w-full rounded-lg bg-gray-900/80 backdrop-blur-md p-4 shadow-lg md:hidden">
-            <ul className="flex flex-col gap-4 text-gray-300">
-              <li>
-                <Link href="/" className="hover:text-white transition" onClick={closeMobileMenu}>
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/AboutUs" className="hover:text-white transition" onClick={closeMobileMenu}>
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/Blog" className="hover:text-white transition" onClick={closeMobileMenu}>
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link href="/ContactUs" className="hover:text-white transition" onClick={closeMobileMenu}>
-                  Contact Us
-                </Link>
-              </li>
-            </ul>
+          <div className="absolute left-0 right-0 top-14 mx-auto max-w-5xl px-4 sm:px-6 md:hidden">
+            <div className="rounded-lg bg-gray-900/80 backdrop-blur-md p-4 shadow-lg">
+              <ul className="flex flex-col gap-4 text-gray-300">
+                <li>
+                  <Link href="/" className="hover:text-white transition" onClick={closeMobileMenu}>
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/AboutUs" className="hover:text-white transition" onClick={closeMobileMenu}>
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/Blog" className="hover:text-white transition" onClick={closeMobileMenu}>
+                    Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/ContactUs" className="hover:text-white transition" onClick={closeMobileMenu}>
+                    Contact Us
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
         )}
       </div>
