@@ -27,11 +27,14 @@ export default function SignupPopup() {
   useEffect(() => {
     // Only show popup when not logged in, not on /signup or /signin, and not just logged out
     if (!isLoggedIn && pathname !== "/signup" && pathname !== "/signin" && !justLoggedOut) {
-      const timer = setTimeout(() => {
-        setShowModal(true);
-      }, 15000); // 15 seconds delay
+      const popupDismissed = localStorage.getItem("popupDismissed");
+      if (!popupDismissed) {
+        const timer = setTimeout(() => {
+          setShowModal(true);
+        }, 15000); // 15 seconds delay
 
-      return () => clearTimeout(timer);
+        return () => clearTimeout(timer);
+      }
     }
   }, [isLoggedIn, pathname, justLoggedOut]);
 
@@ -40,6 +43,7 @@ export default function SignupPopup() {
   // Close the modal when the button is clicked.
   const handleClose = () => {
     setShowModal(false);
+    localStorage.setItem("popupDismissed", "true");
   };
 
   return (
