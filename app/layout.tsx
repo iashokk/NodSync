@@ -5,6 +5,7 @@ import Header from "@/components/ui/header";
 import { AuthProvider } from "@/components/authContext";
 import Script from "next/script";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
+import SignupPopup from "@/components/SignupPopup";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -75,6 +76,7 @@ export default function RootLayout({
         <AnalyticsTracker/>
         {/* Wrapping Header in AuthProvider */}
         <AuthProvider>
+          <SignupPopup/>
           <div className="flex min-h-screen flex-col overflow-hidden supports-[overflow:clip]:overflow-clip">
             <Header />
             {children}
