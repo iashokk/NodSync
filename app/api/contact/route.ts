@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import connect from '@/libs/mongodb';
 import Contact from '../models/Contact';
+import { appendContactData } from '@/libs/googleSheets';
 
 export async function POST(req: NextRequest) {
   try {
@@ -28,6 +29,9 @@ export async function POST(req: NextRequest) {
     // Create and save the contact
     const contact = new Contact(body);
     await contact.save();
+
+    // Append the contact data to Google Sheets
+    await appendContactData(body);
 
     return NextResponse.json({ message: 'Message received successfully!' }, { status: 201 });
   } catch (error) {
