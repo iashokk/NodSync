@@ -145,7 +145,7 @@ export default function ContactUs() {
                   htmlFor="name"
                   className="block text-sm font-medium text-gray-200"
                 >
-                  Name
+                  Name <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -163,7 +163,7 @@ export default function ContactUs() {
                   htmlFor="surname"
                   className="block text-sm font-medium text-gray-200"
                 >
-                  Surname
+                  Surname <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -183,7 +183,7 @@ export default function ContactUs() {
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-200"
                 >
-                  Email
+                  Email <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="email"
@@ -200,7 +200,7 @@ export default function ContactUs() {
                   htmlFor="number"
                   className="block text-sm font-medium text-gray-200"
                 >
-                  Phone Number
+                  Phone Number <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="tel"
@@ -219,7 +219,7 @@ export default function ContactUs() {
                   htmlFor="role"
                   className="block text-sm font-medium text-gray-200"
                 >
-                  I'm a
+                  I'm a <span className="text-red-500">*</span>
                 </label>
                 <select
                   id="role"
@@ -241,7 +241,7 @@ export default function ContactUs() {
                   htmlFor="topic"
                   className="block text-sm font-medium text-gray-200"
                 >
-                  Topic
+                  Topic <span className="text-red-500">*</span>
                 </label>
                 <select
                   id="topic"
@@ -270,7 +270,7 @@ export default function ContactUs() {
                 htmlFor="subject"
                 className="block text-sm font-medium text-gray-200"
               >
-                Subject
+                Subject <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -288,7 +288,7 @@ export default function ContactUs() {
                 htmlFor="description"
                 className="block text-sm font-medium text-gray-200"
               >
-                Full Description
+                Full Description <span className="text-red-500">*</span>
               </label>
               <textarea
                 id="description"

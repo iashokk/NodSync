@@ -139,7 +139,7 @@ export default function SignUp() {
 
             {/* Display success or error messages */}
             {error && <p className="mt-3 text-red-500">{error}</p>}
-            {successMessage && <p className=" mt-3 inline-flex bg-gradient-to-r from-indigo-500 to-indigo-200 bg-clip-text text-transparent">{successMessage}</p>}
+            {successMessage && <p className=" mt-3 inline-flex text-green-500">{successMessage}</p>}
            
             <div className="mt-6 space-y-5">
               <button
