@@ -26,12 +26,12 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid phone number format.' }, { status: 400 });
     }
 
+    // Append the contact data to Google Sheets
+    await appendContactData(body);
+
     // Create and save the contact
     const contact = new Contact(body);
     await contact.save();
-
-    // Append the contact data to Google Sheets
-    await appendContactData(body);
 
     return NextResponse.json({ message: 'Message received successfully!' }, { status: 201 });
   } catch (error) {
