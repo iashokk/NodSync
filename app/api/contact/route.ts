@@ -5,31 +5,31 @@ import { appendContactData } from '@/libs/googleSheets';
 
 export async function POST(req: NextRequest) {
   try {
-    await connect();
     const body = await req.json();
-
+    
     // Required fields: name, email, number, role, topic, subject, description
     const { name, email, number, role, topic, subject, description } = body;
-
+    
     if (!name || !email || !number || !role || !topic || !subject || !description) {
       return NextResponse.json(
         { error: 'Name, email, phone number, role, topic, subject, and full description are required.' },
         { status: 400 }
       );
     }
-
+    
     if (!isValidEmail(email)) {
       return NextResponse.json({ error: 'Invalid email format.' }, { status: 400 });
     }
-
+    
     if (!isValidPhoneNumber(number)) {
       return NextResponse.json({ error: 'Invalid phone number format.' }, { status: 400 });
     }
-
+    
     // Append the contact data to Google Sheets
     await appendContactData(body);
-
+    
     try{
+      await connect();
       // Create and save the contact
       const contact = new Contact(body);
       await contact.save();
