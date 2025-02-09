@@ -73,7 +73,7 @@ export default function RootLayout({
         className={`${inter.variable} ${nacelle.variable} bg-gray-950 font-inter text-base text-gray-200 antialiased`}
       >
         {/* Render the AnalyticsTracker so the hook runs on the client */}
-        <AnalyticsTracker/>
+        {/* <AnalyticsTracker/> */}
         {/* Wrapping Header in AuthProvider */}
         <AuthProvider>
           <SignupPopup/>
