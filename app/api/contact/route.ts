@@ -29,9 +29,13 @@ export async function POST(req: NextRequest) {
     // Append the contact data to Google Sheets
     await appendContactData(body);
 
-    // Create and save the contact
-    const contact = new Contact(body);
-    await contact.save();
+    try{
+      // Create and save the contact
+      const contact = new Contact(body);
+      await contact.save();
+    }catch (error){
+      console.error(error);
+    }
 
     return NextResponse.json({ message: 'Message received successfully!' }, { status: 201 });
   } catch (error) {
