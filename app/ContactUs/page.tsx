@@ -33,10 +33,6 @@ export default function ContactUs() {
       toast.error("Name is required");
       return;
     }
-    if (!formData.surname.trim()) {
-      toast.error("Surname is required");
-      return;
-    }
     if (!formData.email.trim()) {
       toast.error("Email is required");
       return;
@@ -163,7 +159,7 @@ export default function ContactUs() {
                   htmlFor="surname"
                   className="block text-sm font-medium text-gray-200"
                 >
-                  Surname <span className="text-red-500">*</span>
+                  Surname
                 </label>
                 <input
                   type="text"

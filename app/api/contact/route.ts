@@ -9,11 +9,11 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
 
     // Required fields: name, email, number, role, topic, subject, description
-    const { name, surname, email, number, role, topic, subject, description } = body;
+    const { name, email, number, role, topic, subject, description } = body;
 
-    if (!name || !surname || !email || !number || !role || !topic || !subject || !description) {
+    if (!name || !email || !number || !role || !topic || !subject || !description) {
       return NextResponse.json(
-        { error: 'Name, surname, email, phone number, role, topic, subject, and full description are required.' },
+        { error: 'Name, email, phone number, role, topic, subject, and full description are required.' },
         { status: 400 }
       );
     }
