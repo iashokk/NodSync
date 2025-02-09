@@ -128,7 +128,7 @@ export default function Header() {
                 </li>
                 <li>
                   <Link href="/Blog" className="hover:text-white transition" onClick={closeMobileMenu}>
-                    Blog
+                  Resources
                   </Link>
                 </li>
                 <li>
