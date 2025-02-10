@@ -1,22 +1,3 @@
-import { google } from 'googleapis';
-
-/**
- * Create an authenticated Google API client.
- */
-async function getAuthClient() {
-  // Parse the service account key from environment variable
-  const serviceAccountKey = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY);
-  const auth = new google.auth.GoogleAuth({
-    credentials: serviceAccountKey,
-    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-  });
-  return auth.getClient();
-}
-
-/**
- * Append a row with contact data to the Google Sheet.
- * @param {Object} contact - The contact object containing fields like name, surname, email, etc.
- */
 export async function appendContactData(contact) {
   const authClient = await getAuthClient();
   const sheets = google.sheets({ version: 'v4', auth: authClient });
@@ -47,6 +28,7 @@ export async function appendContactData(contact) {
       spreadsheetId,
       range,
       valueInputOption: 'USER_ENTERED', // so that Google Sheets processes numbers/dates
+      insertDataOption: 'INSERT_ROWS', // Ensure rows are inserted
       resource,
     });
     console.log(`${result.data.updates.updatedCells} cells appended.`);
