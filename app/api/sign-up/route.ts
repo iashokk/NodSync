@@ -4,6 +4,7 @@ import User from '../models/User';
 import bcrypt from 'bcryptjs';
 
 export async function POST(req: Request) {
+  let userObject;
   try {
     // Parse the request body
     const { name, organization, email, password } = await req.json();
@@ -23,13 +24,15 @@ export async function POST(req: Request) {
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    // Create a new user
-    const newUser = new User({
+    userObject = {
       name,
       organization,
       email,
       password: hashedPassword,
-    });
+    };
+
+    // Create a new user
+    const newUser = new User(userObject);
 
     // Save the user to the database
     await newUser.save();
@@ -39,6 +42,10 @@ export async function POST(req: Request) {
       { status: 201 }
     );
   } catch (error) {
+
+    console.error("Error registering new user: " + userObject);
+    console.error(error);
+
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     
     return new Response(

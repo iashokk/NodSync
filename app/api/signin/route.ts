@@ -4,9 +4,12 @@ import jwt from 'jsonwebtoken';
 import connect from '@/libs/mongodb';
 import User from '../models/User';
 export async function POST(req: Request) {
+  let logEmail;
   try {
     // Parse the request body
     const { email, password } = await req.json();
+
+    logEmail = email;
 
     // Check if both fields are provided
     if (!email || !password) {
@@ -43,6 +46,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: 'Login successful', token });
 
   } catch (error) {
+    console.error("Error signing in user: " + logEmail);
     console.error(error);
     return NextResponse.json({ message: 'Server error' }, { status: 500 });
   }

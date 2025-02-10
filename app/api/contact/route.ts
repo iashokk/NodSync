@@ -4,8 +4,9 @@ import Contact from '../models/Contact';
 import { appendContactData } from '@/libs/googleSheets';
 
 export async function POST(req: NextRequest) {
+  let body;
   try {
-    const body = await req.json();
+    body = await req.json();
     
     // Required fields: name, email, number, role, topic, subject, description
     const { name, email, number, role, topic, subject, description } = body;
@@ -39,6 +40,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ message: 'Message received successfully!' }, { status: 201 });
   } catch (error) {
+    console.error('Error sending contact details: ' + body);
     console.error(error);
     return NextResponse.json({ error: 'Error saving contact form data' }, { status: 500 });
   }
