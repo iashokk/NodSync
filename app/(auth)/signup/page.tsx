@@ -1,11 +1,12 @@
-// app/sign-up/page.tsx
-
-'use client';
+"use client";
 
 import { useState } from 'react';
 import Link from 'next/link';
-
-
+import { useRouter } from "next/navigation"; // Added router for redirecting after signup
+// Import Firebase modules from our initialization file
+import { auth, firestore } from '@/libs/firebase';
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -18,6 +19,9 @@ export default function SignUp() {
   const [error, setError] = useState<string>('');
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false); // Loading state
+  const router = useRouter(); // Initialize router
+
+  // Handle input changes
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -26,6 +30,7 @@ export default function SignUp() {
     }));
   };
 
+  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(''); // Reset error state
@@ -33,29 +38,41 @@ export default function SignUp() {
     setIsSubmitting(true); // Show loading state
 
     try {
-      const response = await fetch('/api/sign-up', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+      // Create a new user with Firebase Authentication
+      const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+      const user = userCredential.user;
+
+      // Update the user's profile with the display name
+      await updateProfile(user, { displayName: formData.name });
+
+      // Save additional user data in Firestore (using user.uid as document ID)
+      await setDoc(doc(firestore, "users", user.uid), {
+        name: formData.name,
+        organization: formData.organization,
+        email: formData.email,
+        createdAt: serverTimestamp(),
       });
 
-      const data = await response.json();
+      // Set success message and clear the form data
+      setSuccessMessage('User registered successfully!');
+      setFormData({
+        name: '',
+        organization: '',
+        email: '',
+        password: '',
+      });
       
-      if (response.ok) {
-        setSuccessMessage('User registered successfully!');
-        setFormData({
-          name: '',
-          organization: '',
-          email: '',
-          password: '',
-        }); // Clear form data
+      // Delay 0.5 sec so that the user sees the success message, then redirect to home page
+      setTimeout(() => {
+        router.push("/");
+      }, 500);
+    } catch (error: any) {
+      // Handle specific Firebase errors with friendlier messages
+      if (error.code === 'auth/email-already-in-use') {
+        setError("The email address is already in use. Please use a different email address or sign in.");
       } else {
-        setError(data.message || 'Something went wrong, please try again.');
+        setError(error.message || 'Something went wrong, please try again.');
       }
-    } catch (err) {
-      setError('Something went wrong. Please try again.');
     } finally {
       setIsSubmitting(false); // Remove loading state
     }
@@ -72,7 +89,7 @@ export default function SignUp() {
             </h1>
           </div>
 
-          {/* Contact form */}
+          {/* Sign-up form */}
           <form onSubmit={handleSubmit} className="mx-auto max-w-[400px]">
             <div className="space-y-5">
               <div>
@@ -139,14 +156,14 @@ export default function SignUp() {
 
             {/* Display success or error messages */}
             {error && <p className="mt-3 text-red-500">{error}</p>}
-            {successMessage && <p className=" mt-3 inline-flex text-green-500">{successMessage}</p>}
+            {successMessage && <p className="mt-3 inline-flex text-green-500">{successMessage}</p>}
            
             <div className="mt-6 space-y-5">
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={` btn w-full bg-gradient-to-t from-indigo-600 to-indigo-500 text-white ${
-                  isSubmitting ? 'bg-indigo-400 cursor-not-allowed' : 'btn w-full bg-gradient-to-t from-indigo-600 to-indigo-500 text-white'
+                className={`btn w-full bg-gradient-to-t from-indigo-600 to-indigo-500 text-white ${
+                  isSubmitting ? 'bg-indigo-400 cursor-not-allowed' : ''
                 }`}
               >
                 {isSubmitting ? (

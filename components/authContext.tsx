@@ -1,6 +1,8 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
+import { auth } from "@/libs/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 interface AuthContextProps {
   isLoggedIn: boolean;
@@ -11,6 +13,14 @@ const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isLoggedIn, setLoggedIn] = useState<boolean>(false);
+
+  // Listen for Firebase auth state changes
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setLoggedIn(!!user);
+    });
+    return () => unsubscribe();
+  }, []);
 
   return (
     <AuthContext.Provider value={{ isLoggedIn, setLoggedIn }}>

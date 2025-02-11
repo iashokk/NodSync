@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/components/authContext";
+import { auth } from "@/libs/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -12,7 +14,6 @@ export default function SignIn() {
   const [isClient, setIsClient] = useState(false);  // Track if it's running on the client side
   const { setLoggedIn } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false); // Loading state
-
 
   // Initialize router in useEffect to ensure it runs client-side
   const router = useRouter();
@@ -25,29 +26,27 @@ export default function SignIn() {
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true); // Show loading state
-try{
-  const res = await fetch("/api/signin", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ email, password }),
-  });
+    setError(null); // Reset any previous error
 
-    const data = await res.json();
-
-    if (res.ok) {
+    try {
+      // Use Firebase Authentication to sign in the user
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      
       // Only redirect if we're on the client-side
       if (isClient) {
-        localStorage.setItem("user", JSON.stringify({ email }));
+        // Store user information in local storage (for persistence)
+        localStorage.setItem("user", JSON.stringify({ email: userCredential.user.email }));
         // Immediately update the global auth state
         setLoggedIn(true);
         router.push("/");  // Redirect to homepage
       }
+    } catch (err: any) {
+    // Handle specific Firebase errors with friendlier messages
+    if (err.code === "auth/invalid-credential") {
+      setError("Invalid credentials. Please check your email and password.");
     } else {
-      setError(data.message || "Something went wrong");
-    } }catch (err) {
-      setError('Something went wrong. Please try again.');
+      setError(err.message || "Something went wrong. Please try again.");
+    }
     } finally {
       setIsSubmitting(false); // Remove loading state
     }
