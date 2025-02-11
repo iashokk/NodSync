@@ -4,19 +4,23 @@ import Footer from "@/components/ui/footer";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { firestore } from "@/libs/firebase";
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({
     name: "",
     surname: "",
     email: "",
-    number:"",
+    number: "",
     role: "",
     topic: "",
     subject: "",
     description: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Handle input changes
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -25,6 +29,7 @@ export default function ContactUs() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -67,50 +72,58 @@ export default function ContactUs() {
     }
     setIsSubmitting(true);
 
-    const formDataObject = new FormData(e.target as HTMLFormElement);
-    const data = Object.fromEntries(formDataObject.entries());
-
     try {
-      const response = await fetch("/api/contact", {
+
+      // Calling the server-side API to append the contact data to Google Sheets
+      const sheetsResponse = await fetch("/api/google_sheets", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
-        toast.success("Message sent successfully!", {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        });
-
-        setFormData({
-          name: "",
-          surname: "",
-          email: "",
-          number:"",
-          role: "",
-          topic: "",
-          subject: "",
-          description: "",
-        });
-      } else {
-        toast.error("Error sending message. Please try again!", {
-          position: "top-right",
-          autoClose: 3000,
-        });
-      }
-    } catch (error) {
-      toast.error("An unexpected error occurred.");
+      // Directly add the contact data to Firestore in the "contacts" collection
+      await addDoc(collection(firestore, "contacts"), {
+        name: formData.name,
+        surname: formData.surname,
+        email: formData.email,
+        number: formData.number,
+        role: formData.role,
+        topic: formData.topic,
+        subject: formData.subject,
+        description: formData.description,
+        createdAt: serverTimestamp(),
+      });
       
-    }
-    finally{
+      toast.success("Message sent successfully!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+
+      // Reset the form data
+      setFormData({
+        name: "",
+        surname: "",
+        email: "",
+        number: "",
+        role: "",
+        topic: "",
+        subject: "",
+        description: "",
+      });
+    } catch (error) {
+      toast.error("Error sending message. Please try again!", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+    } finally {
       setIsSubmitting(false);
     }
   };
+
   return (
     <section>
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -124,9 +137,7 @@ export default function ContactUs() {
               Contact Us
             </h1>
             <p className="text-xl text-indigo-200/65">
-              Need guidance for your projects, competitions, or placements?
-              Let’s connect! Tell us what you need, and we’ll reach out to help
-              you sync smarter!
+              Need guidance for your projects, competitions, or placements? Let’s connect! Tell us what you need, and we’ll reach out to help you sync smarter!
             </p>
           </div>
           <ToastContainer />
@@ -248,12 +259,8 @@ export default function ContactUs() {
                 >
                   <option value="">Select a topic</option>
                   <option value="project_guidance">Project Guidance</option>
-                  <option value="competition_prep">
-                    Competition Preparation
-                  </option>
-                  <option value="placement_assistance">
-                    Placement Assistance
-                  </option>
+                  <option value="competition_prep">Competition Preparation</option>
+                  <option value="placement_assistance">Placement Assistance</option>
                   <option value="coding_help">Coding Help</option>
                   <option value="academic_support">Academic Support</option>
                   <option value="general">General Inquiry</option>
@@ -297,7 +304,7 @@ export default function ContactUs() {
             </div>
 
             <div className="text-center">
-            <button
+              <button
                 type="submit"
                 disabled={isSubmitting}
                 className={`mt-4 w-full flex items-center justify-center rounded-md px-6 py-3 text-white shadow-lg focus:outline-none focus:ring-4 ${
