@@ -2,11 +2,11 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from "next/navigation"; // Added router for redirecting after signup
+import { useRouter } from "next/navigation"; // For redirecting after signup
 // Import Firebase modules from our initialization file
 import { auth, firestore } from '@/libs/firebase';
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -19,7 +19,7 @@ export default function SignUp() {
   const [error, setError] = useState<string>('');
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false); // Loading state
-  const router = useRouter(); // Initialize router
+  const router = useRouter();
 
   // Handle input changes
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,6 +38,17 @@ export default function SignUp() {
     setIsSubmitting(true); // Show loading state
 
     try {
+      // Check if the email exists in the old_users collection
+      const normalizedEmail = formData.email.trim().toLowerCase();  // Normalize email
+      const oldUserDocRef = doc(firestore, "old_users", normalizedEmail);
+      const oldUserSnapshot = await getDoc(oldUserDocRef);
+      if (oldUserSnapshot.exists()) {
+        // If an old user record exists, do not allow sign-up
+        setError("User already exists. Please sign in.");
+        setIsSubmitting(false);
+        return;
+      }
+      
       // Create a new user with Firebase Authentication
       const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
       const user = userCredential.user;
@@ -53,8 +64,8 @@ export default function SignUp() {
         createdAt: serverTimestamp(),
       });
 
-      // Set success message and clear the form data
       setSuccessMessage('User registered successfully!');
+      // Clear the form data
       setFormData({
         name: '',
         organization: '',
@@ -65,11 +76,13 @@ export default function SignUp() {
       // Delay 0.5 sec so that the user sees the success message, then redirect to home page
       setTimeout(() => {
         router.push("/");
-      }, 500);
+      }, 200);
     } catch (error: any) {
       // Handle specific Firebase errors with friendlier messages
-      if (error.code === 'auth/email-already-in-use') {
-        setError("The email address is already in use. Please use a different email address or sign in.");
+      if (error.code === 'auth/too-many-requests') {
+        setError("Too many request, please wait a while");
+      } else if(error.code === 'auth/email-already-in-use') {
+        setError("User already exists. Please sign in.");
       } else {
         setError(error.message || 'Something went wrong, please try again.');
       }

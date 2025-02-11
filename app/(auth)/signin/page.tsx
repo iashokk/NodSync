@@ -5,7 +5,21 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/components/authContext";
 import { auth } from "@/libs/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import {
+  doc,
+  getDoc,
+  deleteDoc,
+  setDoc,
+  serverTimestamp,
+} from "firebase/firestore";
+import { firestore } from "@/libs/firebase";
+// Import bcryptjs for client-side password comparison
+import bcrypt from "bcryptjs";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -29,7 +43,7 @@ export default function SignIn() {
     setError(null); // Reset any previous error
 
     try {
-      // Use Firebase Authentication to sign in the user
+      // Try to sign in using Firebase Authentication
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       
       // Only redirect if we're on the client-side
@@ -41,12 +55,57 @@ export default function SignIn() {
         router.push("/");  // Redirect to homepage
       }
     } catch (err: any) {
-    // Handle specific Firebase errors with friendlier messages
-    if (err.code === "auth/invalid-credential") {
-      setError("Invalid credentials. Please check your email and password.");
-    } else {
-      setError(err.message || "Something went wrong. Please try again.");
-    }
+      // If the user is not found, attempt to migrate from old_users
+      if (err.code === 'auth/user-not-found' || err.code === "auth/invalid-credential") {
+        try {
+          // Check in the "old_users" collection for this email (document ID is the email)
+          const oldUserDocRef = doc(firestore, "old_users", email);
+          const oldUserSnapshot = await getDoc(oldUserDocRef);
+          if (oldUserSnapshot.exists()) {
+            const oldUserData = oldUserSnapshot.data();
+            // Compare the provided password with the stored hashed password
+            const passwordMatch = await bcrypt.compare(password, oldUserData.password);
+            if (passwordMatch) {
+              // Migrate user by creating a new account in Firebase Authentication
+              const migratedUserCredential = await createUserWithEmailAndPassword(auth, email, password);
+              const migratedUser = migratedUserCredential.user;
+              // Update the user's profile with the name from old_users
+              await updateProfile(migratedUser, { displayName: oldUserData.name });
+              // Create a user document in the new "users" collection in Firestore
+              await setDoc(doc(firestore, "users", migratedUser.uid), {
+                name: oldUserData.name,
+                organization: oldUserData.organization,
+                email: email,
+                createdAt: serverTimestamp(),
+              });
+              // Delete the migrated document from "old_users" so it won't be used again
+              await deleteDoc(oldUserDocRef);
+              // Migration successful, log the user in and redirect
+              if (isClient) {
+                localStorage.setItem("user", JSON.stringify({ email: migratedUser.email }));
+                setLoggedIn(true);
+                router.push("/");
+              }
+              return; // Exit after successful migration
+            } else {
+              // Password did not match for the old user record
+              setError("Invalid credentials. Please check your password.");
+            }
+          } else {
+            // No old user record found, prompt user to sign up
+            setError("Invalid credentials. Please check your email and password.");
+  
+          }
+        } catch (migrationError: any) {
+          setError(migrationError.message || "Error during migration. Please try again.");
+        }
+      } else {
+        if(err.message === 'auth/too-many-requests'){
+          setError("Too many request, please wait a while")
+        }else{
+          setError(err.message || "Something went wrong. Please try again.");
+        }
+      }
     } finally {
       setIsSubmitting(false); // Remove loading state
     }
@@ -115,8 +174,8 @@ export default function SignIn() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={` btn w-full bg-gradient-to-t from-indigo-600 to-indigo-500 text-white ${
-                  isSubmitting ? 'bg-indigo-400 cursor-not-allowed' : 'btn w-full bg-gradient-to-t from-indigo-600 to-indigo-500 text-white'
+                className={`btn w-full bg-gradient-to-t from-indigo-600 to-indigo-500 text-white ${
+                  isSubmitting ? 'bg-indigo-400 cursor-not-allowed' : ''
                 }`}
               >
                 {isSubmitting ? (
