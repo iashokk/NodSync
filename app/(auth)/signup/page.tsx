@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from "next/navigation"; // For redirecting after signup
 // Import Firebase modules from our initialization file
 import { auth, firestore } from '@/libs/firebase';
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
+import { useAuth } from '@/components/authContext';
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -20,6 +21,13 @@ export default function SignUp() {
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false); // Loading state
   const router = useRouter();
+  const { isLoggedIn } = useAuth();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      router.push("/");
+    }
+  }, [isLoggedIn, router]);
 
   // Handle input changes
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -31,6 +31,13 @@ export default function SignIn() {
 
   // Initialize router in useEffect to ensure it runs client-side
   const router = useRouter();
+  const { isLoggedIn } = useAuth();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      router.push("/");
+    }
+  }, [isLoggedIn, router]);
 
   useEffect(() => {
     setIsClient(true); // This will be true after the component is mounted on the client
@@ -137,6 +144,7 @@ export default function SignIn() {
                   placeholder="Your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </div>
               <div>
@@ -161,6 +169,7 @@ export default function SignIn() {
                   placeholder="Your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
               </div>
             </div>
