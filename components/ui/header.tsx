@@ -4,10 +4,14 @@ import Link from "next/link";
 import Logo from "./logo";
 import { useState, useEffect } from "react";
 import { useAuth } from "../authContext";
+import { signOut } from "firebase/auth";
+import { auth } from "@/libs/firebase";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const {isLoggedIn, setLoggedIn} = useAuth();
+  const { isLoggedIn, setLoggedIn } = useAuth();
+  const router = useRouter();
   // Function to close the mobile menu
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
@@ -21,10 +25,18 @@ export default function Header() {
     }
   }, [setLoggedIn]);
 
-  // Handle Logout
-  const handleLogout = () => {
+  // Handle Logout - now also calls Firebase signOut
+  const handleLogout = async () => {
+    try {
+      await signOut(auth); // Sign out from Firebase Authentication
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
     localStorage.removeItem("user");
     setLoggedIn(false);
+    // Optionally, force a page refresh or redirect if needed:
+    router.push("/")
+    
   };
 
   return (
@@ -100,11 +112,12 @@ export default function Header() {
               >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="h-8 w-8" fill="none" stroke="currentColor">
                   <path 
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  fill="white" 
-                  d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/>
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    fill="white" 
+                    d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"
+                  />
                 </svg>
               </button>
             </li>
@@ -128,7 +141,7 @@ export default function Header() {
                 </li>
                 <li>
                   <Link href="/Blog" className="hover:text-white transition" onClick={closeMobileMenu}>
-                  Resources
+                    Resources
                   </Link>
                 </li>
                 <li>
