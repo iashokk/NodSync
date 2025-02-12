@@ -157,9 +157,9 @@ export default function AboutUs() {
         className="rounded-full mx-auto"
       />
       <h3 className="text-xl font-semibold text-gray-200 mt-4">Logesh Krishna</h3>
-      <p className="text-indigo-400 text-sm">Co-founder & Coding Lead at NodSync</p>
+      <p className="text-indigo-400 text-sm">Co-founder and Technical Lead at NodSync</p>
       <p className="text-gray-400 mt-2">
-      With expertise in competitive programming and automation, he tackles coding challenges and optimizes development processes at NodSync.
+      With expertise in competitive programming and automation, he tackles technical challenges and optimizes development processes at NodSync.
       </p>
     </div>
 
