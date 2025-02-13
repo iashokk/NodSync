@@ -4,9 +4,7 @@ import localFont from "next/font/local";
 import Header from "@/components/ui/header";
 import { AuthProvider } from "@/components/authContext";
 import Script from "next/script";
-import AnalyticsTracker from "@/components/AnalyticsTracker";
 import SignupPopup from "@/components/SignupPopup";
-import GiftPopup from "@/components/GiftPopup";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -78,7 +76,6 @@ export default function RootLayout({
         {/* Wrapping Header in AuthProvider */}
         <AuthProvider>
           <SignupPopup/>
-          <GiftPopup/>
           <div className="flex min-h-screen flex-col overflow-hidden supports-[overflow:clip]:overflow-clip">
             <Header />
             {children}
