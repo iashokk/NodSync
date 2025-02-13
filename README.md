@@ -50,4 +50,4 @@ Explore the latest industry trends, emerging technologies, and best practices to
 
 ## 📬 Get in Touch  
 🌐 **Website:** [www.nodsync.com](https://www.nodsync.com)  
-📧 **Email:** [team@nodsync.com]   
+📧 **Email:** [team@nodsync.com](mailto:team@nodsync.com)
