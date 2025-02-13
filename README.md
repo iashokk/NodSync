@@ -31,7 +31,7 @@ Explore the latest industry trends, emerging technologies, and best practices to
 ## 👥 Meet the Team  
 - **Ashok** – Founder & Lead Mentor  
 - **Fazil** – Co-founder & Strategy Contributor  
-- **Logesh** – Co-founder & & Technical Lead  
+- **Logesh** – Co-founder & Technical Lead  
 - **Ranjani** – Cloud & Technical Mentor   
 
 ## 📊 Tools We Use  
