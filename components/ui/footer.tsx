@@ -1,7 +1,6 @@
 import Logo from "./logo";
 import Image from "next/image";
 import FooterIllustration from "@/public/images/footer-illustration.svg";
-import MailIcon from "@/public/images/mail-142.svg";
 import GiftPopup from "../GiftPopup";
 export default function Footer() {
   return (

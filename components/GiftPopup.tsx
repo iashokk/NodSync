@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { firestore } from "@/libs/firebase";
 import { ToastContainer, toast } from "react-toastify";
+import { usePathname } from "next/navigation";
 import "react-toastify/dist/ReactToastify.css";
 
 // Gift icon SVG updated to be responsive: mobile (w-6 h-6) and desktop (w-8 h-8)
@@ -29,6 +30,10 @@ const isValidPhoneNumber = (phone: string) => {
 };
 
 export default function GiftPopup() {
+  const pathname = usePathname();
+  if (pathname === "/ContactUs") {
+    return null;
+  }
   const [showIcon, setShowIcon] = useState(false); // Show gift icon bubble
   const [showModal, setShowModal] = useState(false); // Show popup modal
   const [positionStyle, setPositionStyle] = useState<"fixed" | "absolute">("fixed");
@@ -127,7 +132,11 @@ export default function GiftPopup() {
       fetch("/api/google_sheets", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name: formData.name,
+          number: formData.phone,  // Map phone to number for Google Sheets
+          subject: formData.subject,
+        }),
       }).catch((err) =>
         console.error("Error appending to Google Sheets:", err)
       );
@@ -146,6 +155,7 @@ export default function GiftPopup() {
       localStorage.setItem("giftPopupSubmitted", Date.now().toString());
       setFormData({ name: "", phone: "", subject: "" });
       setShowModal(false);
+      setShowIcon(false);
     } catch (error: any) {
       toast.error("Error submitting details. Please try again.", {
         position: "top-right",
