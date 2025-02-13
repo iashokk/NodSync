@@ -19,7 +19,7 @@ export default function Footer() {
             alt="Footer illustration"
           />
         </div>
-        <div className="flex flex-col items-center justify-center gap-4 py-8 md:flex-row md:justify-between md:py-12">
+        <div className="flex flex-col items-center justify-center gap-4 py-8 md:flex-row md:justify-between md:py-12" id="giftStopper">
           <div className="flex items-center gap-x-1 text-sm text-indigo-200/65">
             <div className="mr-4">
               <Logo />

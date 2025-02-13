@@ -7,9 +7,17 @@ import { firestore } from "@/libs/firebase";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// Gift icon SVG, sized to w-5 h-5
+// Gift icon SVG updated to be responsive: mobile (w-6 h-6) and desktop (w-8 h-8)
 const GiftIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24" className="w-8 h-8">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    x="0px"
+    y="0px"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    className="w-7 h-7 md:w-8 md:h-8"
+  >
     <path d="M 9 2 C 7.346 2 6 3.346 6 5 C 6 5.3523906 6.0714373 5.6856091 6.1835938 6 L 2 6 L 2 12 L 3 12 L 3 19.087891 C 3 20.142891 3.8571094 21 4.9121094 21 L 19.087891 21 C 20.142891 21 21 20.142891 21 19.087891 L 21 12 L 22 12 L 22 6 L 17.816406 6 C 17.928563 5.6856091 18 5.3523906 18 5 C 18 3.346 16.654 2 15 2 C 14.229288 2 13.531943 2.2998104 13 2.7792969 L 13 2.765625 L 12.921875 2.84375 C 12.895215 2.8694499 12.86945 2.8952145 12.84375 2.921875 L 12 3.765625 L 11.15625 2.921875 C 11.13055 2.8952145 11.104785 2.8694499 11.078125 2.84375 L 11 2.765625 L 11 2.7792969 C 10.468057 2.2998104 9.7707122 2 9 2 z M 9 4 C 9.552 4 10 4.449 10 5 C 10 5.551 9.552 6 9 6 C 8.448 6 8 5.551 8 5 C 8 4.449 8.448 4 9 4 z M 15 4 C 15.552 4 16 4.449 16 5 C 16 5.551 15.552 6 15 6 C 14.448 6 14 5.551 14 5 C 14 4.449 14.448 4 15 4 z M 4 8 L 20 8 L 20 10 L 4 10 L 4 8 z M 5 12 L 11 12 L 11 19 L 5 19 L 5 12 z M 13 12 L 19 12 L 19 19 L 13 19 L 13 12 z"></path>
   </svg>
 );
@@ -25,6 +33,7 @@ export default function GiftPopup() {
   const [showModal, setShowModal] = useState(false); // Show popup modal
   const [positionStyle, setPositionStyle] = useState<"fixed" | "absolute">("fixed");
   const [iconBottom, setIconBottom] = useState("40px"); // default bottom offset
+  const [rightOffset, setRightOffset] = useState("8rem"); // default right offset for desktop
   const [shake, setShake] = useState(false); // Controls shake animation
   const [formData, setFormData] = useState({
     name: "",
@@ -36,6 +45,12 @@ export default function GiftPopup() {
 
   // Show gift icon bubble after 20 seconds
   useEffect(() => {
+    const submitted = localStorage.getItem("giftPopupSubmitted");
+    // 7 days = 7 * 24 * 60 * 60 * 1000 ms = 604800000 ms
+    if (submitted && Date.now() - parseInt(submitted) < 604800000) {
+      // Don't show the gift icon if the form was submitted within the last 7 days.
+      return;
+    }
     const timer = setTimeout(() => {
       setShowIcon(true);
     }, 20000); // 20 seconds delay
@@ -47,54 +62,48 @@ export default function GiftPopup() {
     const interval = setInterval(() => {
       setShake(true);
       setTimeout(() => setShake(false), 500);
-    }, 10000); // every 10 seconds
+    }, 10000);
     return () => clearInterval(interval);
   }, []);
 
+  // Update right offset based on screen width for responsiveness
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setRightOffset("1.5rem");
+      } else {
+        setRightOffset("8rem");
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Consolidated scroll listener: adjust bottom offset based on footer position using document.querySelector("footer")
   useEffect(() => {
     const handleScroll = () => {
-      const footer = document.querySelector("footer");
+      const footer = document.querySelector("#giftStopper");
       if (footer) {
-        const footerTop = footer.getBoundingClientRect().top;
+        const footerRect = footer.getBoundingClientRect();
         const windowHeight = window.innerHeight;
-        // If footer is visible, compute new bottom offset so the icon sits at least 10px above the footer
-        const computedOffset = windowHeight - footerTop + 10;
-        if (computedOffset > 40) {
-          setIconBottom(`${computedOffset}px`);
+        if (footerRect.top < windowHeight) {
+          // Compute new bottom offset so the icon stays above the footer with a 20px gap
+          const computedOffset = windowHeight - footerRect.top + 20;
+          const newOffset = Math.min(computedOffset, 80); // Clamp maximum offset to 80px
+          setIconBottom(`${newOffset}px`);
+          setPositionStyle("absolute");
         } else {
           setIconBottom("40px");
+          setPositionStyle("fixed");
         }
       }
     };
   
     window.addEventListener("scroll", handleScroll);
-    // Call it once to initialize
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  // Scroll listener: if near footer, change positioning from fixed to absolute
-  const handleScroll = useCallback(() => {
-    const footer = document.querySelector("footer");
-    const windowHeight = window.innerHeight;
-    if (footer) {
-      const footerRect = footer.getBoundingClientRect();
-      // If footer's top is within viewport, calculate new bottom offset so the icon sits just above the footer (20px gap)
-      if (footerRect.top < windowHeight) {
-        const newBottom = windowHeight - footerRect.top + 20; // 20px gap
-        setIconBottom(`${newBottom}px`);
-        setPositionStyle("absolute");
-      } else {
-        setIconBottom("3.5rem");
-        setPositionStyle("fixed");
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
 
   // Handle form field changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -134,6 +143,7 @@ export default function GiftPopup() {
         position: "top-right",
         autoClose: 3000,
       });
+      localStorage.setItem("giftPopupSubmitted", Date.now().toString());
       setFormData({ name: "", phone: "", subject: "" });
       setShowModal(false);
     } catch (error: any) {
@@ -155,7 +165,7 @@ export default function GiftPopup() {
           style={{
             position: positionStyle,
             bottom: iconBottom,
-            right: "8rem",
+            right: rightOffset,
             zIndex: 1000,
             cursor: "pointer",
           }}
@@ -213,7 +223,6 @@ export default function GiftPopup() {
                   required
                 />
               </div>
-              {/* Subject field without label */}
               <div>
                 <input
                   type="text"
@@ -242,12 +251,12 @@ export default function GiftPopup() {
       <style jsx global>{`
         @keyframes shake {
           0%, 100% { transform: translateX(0); }
-          20%, 60% { transform: translateX(-3px); }
-          40%, 80% { transform: translateX(3px); }
+          20%, 60% { transform: translateX(-5px); }
+          40%, 80% { transform: translateX(5px); }
         }
         .animate-shake {
-          animation: shake 0.5s;
-        }
+          animation: shake 0.7s ease-in-out;
+        } 
       `}</style>
     </>
   );
