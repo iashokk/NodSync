@@ -74,7 +74,7 @@ export default function ContactUs() {
 
     try {
 
-      // Calling the server-side API to append the contact data to Google Sheets
+      // Calling the server-side API to append the contact data to Google Sheets (fire-and-forget)
       fetch("/api/google_sheets", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
