@@ -75,10 +75,12 @@ export default function ContactUs() {
     try {
 
       // Calling the server-side API to append the contact data to Google Sheets
-      const sheetsResponse = await fetch("/api/google_sheets", {
+      fetch("/api/google_sheets", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
+      }).catch((err) => {
+        console.error("Error appending to Google Sheets:", err);
       });
 
       // Directly add the contact data to Firestore in the "contacts" collection
