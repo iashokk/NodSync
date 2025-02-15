@@ -7,6 +7,7 @@ import { firestore } from "@/libs/firebase";
 import { ToastContainer, toast } from "react-toastify";
 import { usePathname } from "next/navigation";
 import "react-toastify/dist/ReactToastify.css";
+import logger from "@/libs/logger";
 
 // Gift icon SVG updated to be responsive: mobile (w-6 h-6) and desktop (w-8 h-8)
 const GiftIcon = () => (
@@ -137,9 +138,21 @@ export default function GiftPopup() {
           number: formData.phone,  // Map phone to number for Google Sheets
           subject: formData.subject,
         }),
-      }).catch((err) =>
-        console.error("Error appending to Google Sheets:", err)
-      );
+      })
+      .then((response) => {
+        if (response.ok) {
+          logger.info(`Contact data of "${formData.name}" appended to Google Sheets successfully`);
+        } else {
+          const responseInfo = {
+            status: response.status,
+            statusText: response.statusText,
+          };
+          logger.error(`Failed to append contact data of "${formData.name}" to Google Sheets`, {formData,responseInfo});
+        }
+      })
+      .catch((error) => {
+        logger.error(`Error appending contact data of "${formData.name}" to Google Sheets`, {formData,error});
+      });
 
       // Save contact data to Firestore in the "contacts" collection
       await addDoc(collection(firestore, "contacts"), {
@@ -152,6 +165,7 @@ export default function GiftPopup() {
         position: "top-right",
         autoClose: 3000,
       });
+      logger.info(`Contact data of "${formData.name}" written to FireStore`);
       localStorage.setItem("giftPopupSubmitted", Date.now().toString());
       setFormData({ name: "", phone: "", subject: "" });
       setShowModal(false);
@@ -161,6 +175,7 @@ export default function GiftPopup() {
         position: "top-right",
         autoClose: 3000,
       });
+      logger.error(`Error writing contact data of "${formData.name}" to FireStore`, {formData, error});
     } finally {
       setIsSubmitting(false);
     }

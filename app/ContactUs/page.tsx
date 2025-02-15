@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { firestore } from "@/libs/firebase";
+import logger from "@/libs/logger";
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({
@@ -79,8 +80,20 @@ export default function ContactUs() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
-      }).catch((err) => {
-        console.error("Error appending to Google Sheets:", err);
+      })
+      .then((response) => {
+        if (response.ok) {
+          logger.info(`Contact data of "${formData.name}" appended to Google Sheets successfully`);
+        } else {
+          const responseInfo = {
+            status: response.status,
+            statusText: response.statusText,
+          };
+          logger.error(`Failed to append contact data of "${formData.name}" to Google Sheets`, {formData,responseInfo});
+        }
+      })
+      .catch((error) => {
+        logger.error(`Error appending contact data of "${formData.name}" to Google Sheets`, {formData,error});
       });
 
       // Directly add the contact data to Firestore in the "contacts" collection
@@ -105,6 +118,8 @@ export default function ContactUs() {
         draggable: true,
       });
 
+      logger.info(`Contact data of "${formData.name}" written to FireStore`);
+
       // Reset the form data
       setFormData({
         name: "",
@@ -121,6 +136,7 @@ export default function ContactUs() {
         position: "top-right",
         autoClose: 3000,
       });
+      logger.error(`Error writing contact data of "${formData.name}" to FireStore`, {formData, error});
     } finally {
       setIsSubmitting(false);
     }

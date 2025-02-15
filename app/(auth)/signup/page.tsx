@@ -8,6 +8,7 @@ import { auth, firestore } from '@/libs/firebase';
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
 import { useAuth } from '@/components/authContext';
+import logger from '@/libs/logger';
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -71,6 +72,8 @@ export default function SignUp() {
         email: formData.email,
         createdAt: serverTimestamp(),
       });
+      
+      logger.info(`Signed up "${formData.email}"`);
 
       setSuccessMessage('User registered successfully!');
       // Clear the form data
@@ -94,6 +97,7 @@ export default function SignUp() {
       } else {
         setError(error.message || 'Something went wrong, please try again.');
       }
+      logger.error(`Error signing up "${formData.email}"`,{error});
     } finally {
       setIsSubmitting(false); // Remove loading state
     }

@@ -20,6 +20,7 @@ import {
 import { firestore } from "@/libs/firebase";
 // Import bcryptjs for client-side password comparison
 import bcrypt from "bcryptjs";
+import logger from "@/libs/logger";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -52,6 +53,8 @@ export default function SignIn() {
     try {
       // Try to sign in using Firebase Authentication
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
+
+      logger.info(`Signed in "${email}"`);
       
       // Only redirect if we're on the client-side
       if (isClient) {
@@ -113,6 +116,7 @@ export default function SignIn() {
           setError(err.message || "Something went wrong. Please try again.");
         }
       }
+      logger.error(`Error signing in "${email}"`,{error});
     } finally {
       setIsSubmitting(false); // Remove loading state
     }
