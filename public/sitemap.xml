@@ -24,9 +24,9 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- Blog -->
+  <!-- Resources -->
   <url>
-    <loc>https://www.nodsync.com/Blog</loc>
+    <loc>https://www.nodsync.com/Resources</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

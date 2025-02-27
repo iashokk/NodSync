@@ -62,7 +62,7 @@ export default function Header() {
                 </Link>
               </li>
               <li>
-                <Link href="/Blog" className="text-[1.02rem] hover:text-white transition">
+                <Link href="/Resources" className="text-[1.02rem] hover:text-white transition">
                   Resources
                 </Link>
               </li>
@@ -140,7 +140,7 @@ export default function Header() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/Blog" className="hover:text-white transition" onClick={closeMobileMenu}>
+                  <Link href="/Resources" className="hover:text-white transition" onClick={closeMobileMenu}>
                     Resources
                   </Link>
                 </li>
