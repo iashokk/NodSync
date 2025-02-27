@@ -9,10 +9,30 @@ import Workflows from "@/components/workflows";
 import Features from "@/components/features";
 import Testimonials from "@/components/testimonials";
 import Cta from "@/components/cta";
+import Head from 'next/head';
 
 export default function Home() {
+
+  const jsonLdData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Final Year Project Guidance and Mentorship",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "122"
+    }
+  };
+
   return (
     <>
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
+          key="jsonld-service"
+        />
+      </Head>
       <PageIllustration />
       <Hero />
       <Workflows />
