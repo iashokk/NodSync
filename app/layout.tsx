@@ -68,6 +68,14 @@ export default function RootLayout({
             });
           `}
         </Script>
+        <Script type="application/ld+json">
+          {`
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "NodSync",
+            "url": "https://nodsync.com"
+          `}
+        </Script>
       </head>
       <body
         className={`${inter.variable} ${nacelle.variable} bg-gray-950 font-inter text-base text-gray-200 antialiased`}
