@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "About Us - NodSync",
-  description: "Sync Smarter , One Nod at a Time",
+  title: "About NodSync – Our Story & Mission",
+  description: "Learn about NodSync’s journey and our mission to empower students with expert project support and personalized mentorship.",
 };
 
 import Link from "next/link";

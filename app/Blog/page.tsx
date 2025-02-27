@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Resources - NodSync",
-  description: "Sync Smarter , One Nod at a Time",
+  title: "NodSync Resources – Tips, Guides & Innovations",
+  description: "Explore tips, guides, and insights on project development—from software and IoT to other tech innovations—to boost your skills and creativity.",
 };
 
 import Footer from "@/components/ui/footer";

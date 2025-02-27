@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "NodSync",
-  description: "Sync Smarter , One Nod at a Time",
+  title: "NodSync – Expert IT Project Guidance & Mentorship",
+  description: "Discover NodSync – your trusted partner for IT project guidance, full project support, and one-on-one mentorship.",
 };
 
 import PageIllustration from "@/components/page-illustration";
