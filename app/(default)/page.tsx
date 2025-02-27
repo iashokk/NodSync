@@ -16,7 +16,7 @@ export default function Home() {
   const jsonLdData = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "Final Year Project Guidance and Mentorship",
+    "name": "NodSync",
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.9",
