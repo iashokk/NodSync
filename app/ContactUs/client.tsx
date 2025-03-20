@@ -18,6 +18,8 @@ export default function ContactUsClient() {
     topic: "",
     subject: "",
     description: "",
+    college: "", 
+    department: "", 
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -106,6 +108,8 @@ export default function ContactUsClient() {
         topic: formData.topic,
         subject: formData.subject,
         description: formData.description,
+        college: formData.college, 
+        department: formData.department, 
         createdAt: serverTimestamp(),
       });
       
@@ -130,6 +134,8 @@ export default function ContactUsClient() {
         topic: "",
         subject: "",
         description: "",
+        college: "", 
+        department: "", 
       });
     } catch (error) {
       toast.error("Error sending message. Please try again!", {
@@ -234,6 +240,42 @@ export default function ContactUsClient() {
                   value={formData.number}
                   onChange={handleChange}
                   placeholder="Your Mobile Number"
+                  className="mt-1 w-full rounded-md border-gray-700 bg-gray-900 text-gray-200 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <div>
+                <label
+                  htmlFor="college"
+                  className="block text-sm font-medium text-gray-200"
+                >
+                  College/Institution
+                </label>
+                <input
+                  type="text"
+                  id="college"
+                  name="college"
+                  value={formData.college}
+                  onChange={handleChange}
+                  placeholder="Your college or institution"
+                  className="mt-1 w-full rounded-md border-gray-700 bg-gray-900 text-gray-200 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="department"
+                  className="block text-sm font-medium text-gray-200"
+                >
+                  Department
+                </label>
+                <input
+                  type="text"
+                  id="department"
+                  name="department"
+                  value={formData.department}
+                  onChange={handleChange}
+                  placeholder="Your department"
                   className="mt-1 w-full rounded-md border-gray-700 bg-gray-900 text-gray-200 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 />
               </div>
