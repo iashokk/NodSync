@@ -36,6 +36,8 @@ export async function appendContactData(contact) {
       contact.topic,
       contact.subject,
       contact.description,
+      contact.college,
+      contact.department,
       new Date().toLocaleString(), // Timestamp for when the contact was added
     ],
   ];
